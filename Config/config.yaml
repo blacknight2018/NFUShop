@@ -1,0 +1,1 @@
+db_connect: root:WOaini1314@(localhost:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
