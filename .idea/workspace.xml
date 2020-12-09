@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="" />
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="address、cart、goods、order、sub_goods、user表的增改查都添加完成">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/Config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Config/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document.md" beforeDir="false" afterPath="$PROJECT_DIR$/document.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,17 +20,22 @@
     </option>
   </component>
   <component name="GOROOT" path="C:\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1lOnRZm2hFzeMFIREpvt7cuoV0p" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -59,43 +69,59 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="address、cart、goods、order、sub_goods、user表的增改查都添加完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="address、cart、goods、order、sub_goods、user表的增改查都添加完成" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607532763283">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1607532763283" />
     <state width="561" height="466" key="DebuggerActiveHint" timestamp="1607528416265">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="561" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1607528416265" />
-    <state width="1493" height="219" key="GridCell.Tab.0.bottom" timestamp="1607531915820">
+    <state x="549" y="153" key="FileChooserDialogImpl" timestamp="1607531961661">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607531915820" />
-    <state width="1493" height="219" key="GridCell.Tab.0.center" timestamp="1607531915820">
+    <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1607531961661" />
+    <state x="640" y="309" key="Github.ShareDialog" timestamp="1607532151488">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607531915820" />
-    <state width="1493" height="219" key="GridCell.Tab.0.left" timestamp="1607531915820">
+    <state x="640" y="309" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1607532151488" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1607532792591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607531915820" />
-    <state width="1493" height="219" key="GridCell.Tab.0.right" timestamp="1607531915820">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607532792591" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1607532792591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607531915820" />
-    <state width="1493" height="219" key="GridCell.Tab.1.bottom" timestamp="1607531915737">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607532792591" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1607532792591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607531915737" />
-    <state width="1493" height="219" key="GridCell.Tab.1.center" timestamp="1607531915737">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607532792591" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1607532792591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607531915737" />
-    <state width="1493" height="219" key="GridCell.Tab.1.left" timestamp="1607531915737">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607532792591" />
+    <state width="1493" height="219" key="GridCell.Tab.1.bottom" timestamp="1607532766237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607531915737" />
-    <state width="1493" height="219" key="GridCell.Tab.1.right" timestamp="1607531915737">
+    <state width="1493" height="219" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607532766237" />
+    <state width="1493" height="219" key="GridCell.Tab.1.center" timestamp="1607532766237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607531915737" />
+    <state width="1493" height="219" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607532766237" />
+    <state width="1493" height="219" key="GridCell.Tab.1.left" timestamp="1607532766237">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="219" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607532766237" />
+    <state width="1493" height="219" key="GridCell.Tab.1.right" timestamp="1607532766237">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="219" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607532766237" />
     <state x="270" y="56" key="SettingsEditor" timestamp="1607527866867">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

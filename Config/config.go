@@ -9,6 +9,7 @@ import (
 
 type conf struct {
 	DbConnect string `yaml:"db_connect"`
+	Port      int    `yaml:"port"`
 }
 
 var c conf
@@ -23,6 +24,10 @@ func GetConf() conf {
 		fmt.Println(err.Error())
 	}
 	return c
+}
+
+func GetBindPort() int {
+	return c.Port
 }
 
 func GetOneDB() *gorm.DB {
