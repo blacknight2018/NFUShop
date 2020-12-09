@@ -2,12 +2,15 @@ package main
 
 import (
 	"NFUShop/Config"
+	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 func main() {
 
 	Config.GetConf()
-
+	r := gin.Default()
+	r.Run(":" + strconv.Itoa(Config.GetBindPort()))
 	//var or DbModel.Order
 	//or.UserId = 1
 	//or.NickName = "33"
