@@ -10,6 +10,7 @@ import (
 type conf struct {
 	DbConnect string `yaml:"db_connect"`
 	Port      int    `yaml:"port"`
+	SecretKey string `yaml:"secretKey"`
 }
 
 var c conf
@@ -30,6 +31,9 @@ func GetBindPort() int {
 	return c.Port
 }
 
+func GetJWTSecret() string {
+	return c.SecretKey
+}
 func GetOneDB() *gorm.DB {
 	db, err := gorm.Open("mysql", c.DbConnect)
 	if err != nil {

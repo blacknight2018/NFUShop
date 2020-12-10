@@ -1,8 +1,11 @@
 package Utils
 
 import (
+	"NFUShop/Config"
 	"encoding/json"
+	"github.com/dgrijalva/jwt-go"
 	"strconv"
+	"time"
 )
 
 const EmptyString = ""
@@ -26,4 +29,31 @@ func StrToInt(str string) int {
 		ret = data
 	}
 	return ret
+}
+
+type Claims struct {
+	Data interface{} `json:"data"`
+	jwt.StandardClaims
+}
+
+func GenerateJWT(obj interface{}) string {
+	claims := Claims{
+		obj,
+		jwt.StandardClaims{ExpiresAt: time.Now().Add(148 * time.Hour).Unix()},
+	}
+	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	token, _ := tokenClaims.SignedString([]byte(Config.GetJWTSecret()))
+	return token
+}
+
+func ParseJWT(token string) interface{} {
+	tokenClaims, err := jwt.ParseWithClaims(token, &Claims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(Config.GetJWTSecret()), nil
+	})
+	if tokenClaims != nil && err == nil {
+		if claims, ok := tokenClaims.Claims.(*Claims); ok && tokenClaims.Valid {
+			return claims.Data
+		}
+	}
+	return nil
 }
