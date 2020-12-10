@@ -9,6 +9,9 @@ import (
 func main() {
 
 	Config.GetConf()
+
+	//
+
 	r := gin.Default()
 	r.Run(":" + strconv.Itoa(Config.GetBindPort()))
 	//var or DbModel.Order

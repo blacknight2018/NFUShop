@@ -2,7 +2,7 @@ package DbModel
 
 import "NFUShop/Config"
 
-func FindTableById(tableName string, id int, out interface{}) bool {
+func SelectTableRecordById(tableName string, id int, out interface{}) bool {
 	db := Config.GetOneDB()
 	if db == nil {
 		return false
@@ -89,5 +89,36 @@ func UpdateDBObj(in interface{}) bool {
 		db.Model(&User{}).Where("id = ?", v.Id).Update(v)
 		break
 	}
+	return err == nil
+}
+
+func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, limit int, offset int) bool {
+	db := Config.GetOneDB()
+	if db == nil {
+		return false
+	}
+	var err error
+	switch v := out.(type) {
+	case *[]User:
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		break
+	case *[]Order:
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		break
+	case *[]Cart:
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		break
+	case *[]Goods:
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		break
+	case *[]SubGoods:
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		break
+	case *[]Address:
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		break
+	}
+	defer db.Close()
+
 	return err == nil
 }

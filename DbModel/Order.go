@@ -29,5 +29,10 @@ func (o *Order) Insert() bool {
 
 func FindOrderByOrderId(orderId int) (bool, *Order) {
 	var order Order
-	return FindTableById("order", orderId, &order), &order
+	return SelectTableRecordById("order", orderId, &order), &order
+}
+
+func FindOrderSet(condition map[string]interface{}, limit int, offset int) (bool, []Order) {
+	var orderSet []Order
+	return SelectTableRecordSet("order", &orderSet, condition, limit, offset), orderSet
 }

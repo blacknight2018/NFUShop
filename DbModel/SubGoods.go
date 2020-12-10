@@ -28,5 +28,10 @@ func (s *SubGoods) Insert() bool {
 
 func FindSubGoodsBySubGoodsId(subGoodsId int) (bool, *SubGoods) {
 	var subGoods SubGoods
-	return FindTableById("sub_goods", subGoodsId, &subGoods), &subGoods
+	return SelectTableRecordById("sub_goods", subGoodsId, &subGoods), &subGoods
+}
+
+func FindSubGoodsSet(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
+	var subGoodsSet []SubGoods
+	return SelectTableRecordSet("sub_goods", &subGoodsSet, condition, limit, offset), subGoodsSet
 }

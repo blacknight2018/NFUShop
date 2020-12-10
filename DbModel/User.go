@@ -27,5 +27,10 @@ func (u *User) Insert() bool {
 
 func FindUserByUserId(userId int) (bool, *User) {
 	var user User
-	return FindTableById("user", userId, &user), &user
+	return SelectTableRecordById("user", userId, &user), &user
+}
+
+func FindUserSet(condition map[string]interface{}, limit int, offset int) (bool, []User) {
+	var userSet []User
+	return SelectTableRecordSet("user", &userSet, condition, limit, offset), userSet
 }

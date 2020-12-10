@@ -25,5 +25,10 @@ func (c *Cart) Insert() bool {
 
 func FindCartByCartId(cartId int) (bool, *Cart) {
 	var cart Cart
-	return FindTableById("cart", cartId, &cart), &cart
+	return SelectTableRecordById("cart", cartId, &cart), &cart
+}
+
+func FindCartSet(condition map[string]interface{}, limit int, offset int) (bool, []Cart) {
+	var cartSet []Cart
+	return SelectTableRecordSet("cart", &cartSet, condition, limit, offset), cartSet
 }

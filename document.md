@@ -1,8 +1,5 @@
 ```mermaid
 graph TB
-    Gin--->User
-    Gin--->Notify
-    Notify--->Sub_Goods
     User--->Order
     User--->Address
     User--->Cart
@@ -10,4 +7,19 @@ graph TB
     Cart--->Sub_Goods
     Sub_Goods--->Result
     Result--->Utils
+
+    Gin--->Service
+
+    
+    Service--->GetHotSubGoods--->SearchSubGoods
+    Service--->GetNewestSubGoods--->SearchSubGoods
+    Service--->GetSubGoods--->SearchSubGoods
+
+    Service--->GetOrder--->GetSubGoods
+    Service--->CreateOrder--->GetSubGoods
+    Service--->DelCart
+    Service--->GetCart--->GetSubGoods
+    SearchSubGoods--->User
+    
+
 ```

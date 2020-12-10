@@ -27,5 +27,10 @@ func (a *Address) Insert() bool {
 
 func FindAddressByAddressId(addressId int) (bool, *Address) {
 	var address Address
-	return FindTableById("address", addressId, &address), &address
+	return SelectTableRecordById("address", addressId, &address), &address
+}
+
+func FindAddressSet(condition map[string]interface{}, limit int, offset int) (bool, []Address) {
+	var addressSet []Address
+	return SelectTableRecordSet("address", &addressSet, condition, limit, offset), addressSet
 }
