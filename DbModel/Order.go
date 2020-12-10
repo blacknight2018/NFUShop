@@ -1,6 +1,9 @@
 package DbModel
 
-import "time"
+import (
+	"ny2/utils"
+	"time"
+)
 
 type Order struct {
 	Id         int        `gorm:"column:id;primary_key"`
@@ -27,12 +30,12 @@ func (o *Order) Insert() bool {
 	return InsertDBObj(o)
 }
 
-func FindOrderByOrderId(orderId int) (bool, *Order) {
+func SelectOrderByOrderId(orderId int) (bool, *Order) {
 	var order Order
-	return SelectTableRecordById("order", orderId, &order), &order
+	return SelectTableRecordById((&Order{}).TableName(), orderId, nil, &order), &order
 }
 
-func FindOrderSet(condition map[string]interface{}, limit int, offset int) (bool, []Order) {
+func SelectOrderSet(condition map[string]interface{}, limit int, offset int) (bool, []Order) {
 	var orderSet []Order
-	return SelectTableRecordSet("order", &orderSet, condition, limit, offset), orderSet
+	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, limit, offset, utils.EmptyString), orderSet
 }

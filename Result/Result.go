@@ -1,4 +1,4 @@
-package main
+package Result
 
 import "encoding/json"
 
@@ -7,10 +7,10 @@ type Result struct {
 	Data interface{} `json:"data"`
 }
 
-func (r Result) Get() (bool, string) {
+func (r Result) Get() string {
 	var ret string
 	if bytes, err := json.Marshal(r); err == nil {
-		return true, string(bytes)
+		ret = string(bytes)
 	}
-	return false, ret
+	return ret
 }

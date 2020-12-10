@@ -2,6 +2,7 @@ package DbModel
 
 import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"ny2/utils"
 	"time"
 )
 
@@ -25,12 +26,21 @@ func (u *User) Insert() bool {
 	return InsertDBObj(u)
 }
 
-func FindUserByUserId(userId int) (bool, *User) {
-	var user User
-	return SelectTableRecordById("user", userId, &user), &user
+func SelectUserByPhone(phone string) (bool, *User) {
+	var userSet []User
+	ok := SelectTableRecordSet((&User{}).TableName(), &userSet, map[string]interface{}{"phone": phone}, 1, 0, utils.EmptyString)
+	if ok && len(userSet) > 0 {
+		return ok, &userSet[0]
+	}
+	return false, nil
 }
 
-func FindUserSet(condition map[string]interface{}, limit int, offset int) (bool, []User) {
+func SelectUserByUserId(userId int) (bool, *User) {
+	var user User
+	return SelectTableRecordById((&User{}).TableName(), userId, nil, &user), &user
+}
+
+func SelectUserSet(condition map[string]interface{}, limit int, offset int) (bool, []User) {
 	var userSet []User
-	return SelectTableRecordSet("user", &userSet, condition, limit, offset), userSet
+	return SelectTableRecordSet((&User{}).TableName(), &userSet, condition, limit, offset, utils.EmptyString), userSet
 }

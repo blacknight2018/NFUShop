@@ -8,8 +8,10 @@ graph TB
     Sub_Goods--->Result
     Result--->Utils
 
-    Gin--->Service
-
+    Gin--->UID--->CID--->Api--->Service
+    Gin--->UID--->GoodsID--->Api--->Service
+    Gin--->UID--->AID--->Api--->Service
+   
     
     Service--->GetHotSubGoods--->SearchSubGoods
     Service--->GetNewestSubGoods--->SearchSubGoods

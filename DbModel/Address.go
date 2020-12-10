@@ -1,9 +1,12 @@
 package DbModel
 
-import "time"
+import (
+	"ny2/utils"
+	"time"
+)
 
 type Address struct {
-	Id         int        `gorm:"column:id;primary_key"`
+	Id         int        `json:"id" gorm:"column:id;primary_key"`
 	UserId     int        `gorm:"column:user_id"`
 	NickName   string     `gorm:"column:nick_name"`
 	Sex        string     `gorm:"column:sex;type:char(1)"`
@@ -25,12 +28,12 @@ func (a *Address) Insert() bool {
 	return InsertDBObj(a)
 }
 
-func FindAddressByAddressId(addressId int) (bool, *Address) {
+func SelectAddressByAddressId(addressId int) (bool, *Address) {
 	var address Address
-	return SelectTableRecordById("address", addressId, &address), &address
+	return SelectTableRecordById("address", addressId, nil, &address), &address
 }
 
-func FindAddressSet(condition map[string]interface{}, limit int, offset int) (bool, []Address) {
+func SelectAddressSet(condition map[string]interface{}, limit int, offset int) (bool, []Address) {
 	var addressSet []Address
-	return SelectTableRecordSet("address", &addressSet, condition, limit, offset), addressSet
+	return SelectTableRecordSet("address", &addressSet, condition, limit, offset, utils.EmptyString), addressSet
 }

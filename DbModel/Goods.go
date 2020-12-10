@@ -1,16 +1,19 @@
 package DbModel
 
-import "time"
+import (
+	"ny2/utils"
+	"time"
+)
 
 type Goods struct {
-	Id         int        `gorm:"column:id;primary_key"`
-	Title      string     `gorm:"column:title"`
-	Banner     string     `gorm:"column:banner"`
-	Template   string     `gorm:"column:template"`
-	CreateTime *time.Time `gorm:"column:create_time" sql:"-"`
-	UpdateTime *time.Time `gorm:"column:update_time" sql:"-"`
-	Desc       string     `gorm:"column:desc"`
-	DetailImg  string     `gorm:"column:detail_img"`
+	Id         int        `json:"id" gorm:"column:id;primary_key"`
+	Title      string     `json:"title" gorm:"column:title"`
+	Banner     string     `json:"banner" gorm:"column:banner"`
+	Template   string     `json:"template" gorm:"column:template"`
+	CreateTime *time.Time `json:"-" gorm:"column:create_time" sql:"-"`
+	UpdateTime *time.Time `json:"-" gorm:"column:update_time" sql:"-"`
+	Desc       string     `json:"desc" gorm:"column:desc"`
+	DetailImg  string     `json:"detail_img" gorm:"column:detail_img"`
 }
 
 func (g *Goods) TableName() string {
@@ -25,12 +28,12 @@ func (g *Goods) Insert() bool {
 	return InsertDBObj(g)
 }
 
-func FindGoodsByGoodsId(goodsId int) (bool, *Goods) {
+func SelectGoodsByGoodsId(goodsId int) (bool, *Goods) {
 	var goods Goods
-	return SelectTableRecordById("goods", goodsId, &goods), &goods
+	return SelectTableRecordById((&Goods{}).TableName(), goodsId, nil, &goods), &goods
 }
 
-func FindGoodsSet(condition map[string]interface{}, limit int, offset int) (bool, []Goods) {
+func SelectGoodsSet(condition map[string]interface{}, limit int, offset int) (bool, []Goods) {
 	var goodsSet []Goods
-	return SelectTableRecordSet("goods", &goodsSet, condition, limit, offset), goodsSet
+	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, limit, offset, utils.EmptyString), goodsSet
 }

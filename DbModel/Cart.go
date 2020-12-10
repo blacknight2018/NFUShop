@@ -1,6 +1,10 @@
 package DbModel
 
-import "time"
+import (
+	"NFUShop/Config"
+	"ny2/utils"
+	"time"
+)
 
 type Cart struct {
 	Id         int        `gorm:"column:id;primary_key"`
@@ -23,12 +27,58 @@ func (c *Cart) Insert() bool {
 	return InsertDBObj(c)
 }
 
-func FindCartByCartId(cartId int) (bool, *Cart) {
-	var cart Cart
-	return SelectTableRecordById("cart", cartId, &cart), &cart
+func (c *Cart) Delete() bool {
+	return DeleteDBObj(c)
 }
 
-func FindCartSet(condition map[string]interface{}, limit int, offset int) (bool, []Cart) {
+/**
+ * @Description: 删除userId下的cart记录
+ * @param cartId
+ * @param userId
+ * @return bool
+ */
+func DeleteCartByUserId(cartId int, userId int) bool {
+	db := Config.GetOneDB()
+	if db == nil {
+		return false
+	}
+	defer db.Close()
+	return nil == db.Where("user_id = ?", userId).Where("id = ?", cartId).Delete(Cart{}).Error
+}
+
+/**
+ * @Description:根据cartId获取一条cart记录
+ * @param cartId
+ * @return bool
+ * @return *Cart
+ */
+func SelectCartByCartId(cartId int) (bool, *Cart) {
+	var cart Cart
+	return SelectTableRecordById((&Cart{}).TableName(), cartId, nil, &cart), &cart
+}
+
+/**
+ * @Description: 多条件查询cart集合
+ * @param condition
+ * @param limit
+ * @param offset
+ * @return bool
+ * @return []Cart
+ */
+func SelectCartSet(condition map[string]interface{}, limit int, offset int) (bool, []Cart) {
 	var cartSet []Cart
-	return SelectTableRecordSet("cart", &cartSet, condition, limit, offset), cartSet
+	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, condition, limit, offset, utils.EmptyString), cartSet
+}
+
+/**
+ * @Description: 获取userId下的所有cart记录
+ * @param userId
+ * @param limit
+ * @param offset
+ * @return bool
+ * @return []Cart
+ */
+func SelectCartSetByUserId(userId int, limit int, offset int) (bool, []Cart) {
+	var cartSet []Cart
+	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, map[string]interface{}{"user_id": userId}, limit, offset, utils.EmptyString), cartSet
 }

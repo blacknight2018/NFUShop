@@ -2,7 +2,7 @@ package DbModel
 
 import "NFUShop/Config"
 
-func SelectTableRecordById(tableName string, id int, out interface{}) bool {
+func SelectTableRecordById(tableName string, id int, condition map[string]interface{}, out interface{}) bool {
 	db := Config.GetOneDB()
 	if db == nil {
 		return false
@@ -11,22 +11,22 @@ func SelectTableRecordById(tableName string, id int, out interface{}) bool {
 	var err error
 	switch v := out.(type) {
 	case *User:
-		err = db.Table(tableName).Where("id = ?", id).First(v).Error
+		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
 		break
 	case *Address:
-		err = db.Table(tableName).Where("id = ?", id).First(v).Error
+		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
 		break
 	case *Goods:
-		err = db.Table(tableName).Where("id = ?", id).First(v).Error
+		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
 		break
 	case *SubGoods:
-		err = db.Table(tableName).Where("id = ?", id).First(v).Error
+		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
 		break
 	case *Order:
-		err = db.Table(tableName).Where("id = ?", id).First(v).Error
+		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
 		break
 	case *Cart:
-		err = db.Table(tableName).Where("id = ?", id).First(v).Error
+		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
 		break
 	}
 	return err == nil
@@ -92,7 +92,22 @@ func UpdateDBObj(in interface{}) bool {
 	return err == nil
 }
 
-func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, limit int, offset int) bool {
+func DeleteDBObj(in interface{}) bool {
+	db := Config.GetOneDB()
+	if db == nil {
+		return false
+	}
+	defer db.Close()
+	var err error
+	switch v := in.(type) {
+	case *Cart:
+		err = db.Delete(v).Error
+		break
+	}
+	return err == nil
+}
+
+func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, limit int, offset int, order string) bool {
 	db := Config.GetOneDB()
 	if db == nil {
 		return false
@@ -100,22 +115,22 @@ func SelectTableRecordSet(tableName string, out interface{}, condition map[strin
 	var err error
 	switch v := out.(type) {
 	case *[]User:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
 		break
 	case *[]Order:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
 		break
 	case *[]Cart:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
 		break
 	case *[]Goods:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
 		break
 	case *[]SubGoods:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
 		break
 	case *[]Address:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Find(v).Error
+		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
 		break
 	}
 	defer db.Close()
