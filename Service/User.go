@@ -15,3 +15,16 @@ func LoginUser(phone string, passWord string) Result.Result {
 	}
 	return Result.Result{Code: Result.UserNotExit}
 }
+
+func Register(phone string, passWord string) Result.Result {
+	var u DbModel.User
+	if ok, _ := DbModel.SelectUserByPhone(phone); ok {
+		return Result.Result{Code: Result.UserExit}
+	}
+	u.Phone = phone
+	u.PassWord = passWord
+	if u.Insert() {
+		return Result.Result{Code: Result.Ok}
+	}
+	return Result.Result{Code: Result.UnKnow}
+}

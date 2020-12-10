@@ -22,6 +22,11 @@ func main() {
 		passWord := context.Query("pass_word")
 		context.Writer.Write([]byte(Service.LoginUser(phone, passWord).Get()))
 	})
+	v1.POST("/register", func(context *gin.Context) {
+		phone := context.Query("phone")
+		passWord := context.Query("pass_word")
+		context.Writer.Write([]byte(Service.Register(phone, passWord).Get()))
+	})
 
 	home.GET("/hot", func(context *gin.Context) {
 		context.Writer.Write([]byte(Service.GetHotSubGoods().Get()))
