@@ -4,6 +4,7 @@ import (
 	"NFUShop/Config"
 	"encoding/json"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
 	"strconv"
 	"time"
 )
@@ -36,6 +37,11 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
+/**
+ * @Description: 将数据解析成JWTToken
+ * @param obj
+ * @return string
+ */
 func GenerateJWT(obj interface{}) string {
 	claims := Claims{
 		obj,
@@ -46,6 +52,11 @@ func GenerateJWT(obj interface{}) string {
 	return token
 }
 
+/**
+ * @Description: 将JWTToken解析为对象
+ * @param token
+ * @return interface{}
+ */
 func ParseJWT(token string) interface{} {
 	tokenClaims, err := jwt.ParseWithClaims(token, &Claims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(Config.GetJWTSecret()), nil
@@ -56,4 +67,23 @@ func ParseJWT(token string) interface{} {
 		}
 	}
 	return nil
+}
+
+func ContextGetInt(context *gin.Context, key string) int {
+	var ret int
+	if v, ok := context.Get(key); ok {
+
+		switch data := v.(type) {
+		case int:
+			ret = data
+			break
+		case int64:
+			ret = int(data)
+			break
+		case float64:
+			ret = int(data)
+			break
+		}
+	}
+	return ret
 }

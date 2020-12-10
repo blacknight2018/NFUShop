@@ -10,10 +10,10 @@ const (
 
 func code2Msg(code int) string {
 	m := make(map[int]string)
-	m[Ok] = "Success"
-	m[UserExit] = "User has exit"
-	m[UserNotExit] = "User not exit"
-	m[PassWordNotRight] = "PassWord is not right"
-	m[UnKnow] = "Unknow"
+	m[Ok] = "success"
+	m[UserExit] = "user has exit"
+	m[UserNotExit] = "user not exit"
+	m[PassWordNotRight] = "passWord is not right"
+	m[UnKnow] = "unknown"
 	return m[code]
 }

@@ -5,7 +5,15 @@ import (
 	"NFUShop/Result"
 )
 
-func LoginUser(phone string, passWord string) Result.Result {
+func GetUserIdByPhone(phone string) int {
+	var userId int
+	if ok, user := DbModel.SelectUserByPhone(phone); ok {
+		userId = user.Id
+	}
+	return userId
+}
+
+func CheckUserAuth(phone string, passWord string) Result.Result {
 	if ok, user := DbModel.SelectUserByPhone(phone); ok {
 		if user.PassWord == passWord {
 			return Result.Result{Code: Result.Ok}
