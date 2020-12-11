@@ -36,3 +36,10 @@ func Register(phone string, passWord string) Result.Result {
 	}
 	return Result.Result{Code: Result.UnKnow}
 }
+
+func GetUser(userId int) Result.Result {
+	if ok, user := DbModel.SelectUserByUserId(userId); ok {
+		return Result.Result{Code: Result.Ok, Data: user}
+	}
+	return Result.Result{Code: Result.UnKnow}
+}

@@ -25,6 +25,7 @@ func main() {
 	})
 	home := v1.Group("/home")
 	cart := v1.Group("/cart")
+	user := v1.Group("/user")
 
 	v1.POST("/login", func(context *gin.Context) {
 		phone := context.PostForm("phone")
@@ -41,6 +42,11 @@ func main() {
 		phone := context.PostForm("phone")
 		passWord := context.PostForm("pass_word")
 		context.Writer.Write([]byte(Service.Register(phone, passWord).Get()))
+	})
+
+	user.GET("", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
+		context.Writer.Write([]byte(Service.GetUser(userId).Get()))
 	})
 
 	home.GET("/hot", func(context *gin.Context) {
