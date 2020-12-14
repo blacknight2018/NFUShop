@@ -48,3 +48,13 @@ func SelectSubGoodsSetDescSell(condition map[string]interface{}, limit int, offs
 	var subGoodsSet []SubGoods
 	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, limit, offset, "sell desc"), subGoodsSet
 }
+
+func SelectSubGoodsByTemplateIndex(goodsId int, templateIndex string) (bool, *SubGoods) {
+	var subGoodsSet []SubGoods
+	condition := map[string]interface{}{"goods_id": goodsId, "template": templateIndex}
+	SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, 1, 0, utils.EmptyString)
+	if len(subGoodsSet) == 0 {
+		return false, nil
+	}
+	return true, &subGoodsSet[0]
+}

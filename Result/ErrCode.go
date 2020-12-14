@@ -6,6 +6,7 @@ const (
 	UserExit         = iota
 	PassWordNotRight = iota
 	UnKnow           = iota
+	GoodsNotFound    = iota
 )
 
 func code2Msg(code int) string {
@@ -15,5 +16,6 @@ func code2Msg(code int) string {
 	m[UserNotExit] = "user not exit"
 	m[PassWordNotRight] = "passWord is not right"
 	m[UnKnow] = "unknown"
+	m[GoodsNotFound] = "can not found the goods"
 	return m[code]
 }

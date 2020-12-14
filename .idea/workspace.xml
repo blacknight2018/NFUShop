@@ -19,11 +19,41 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="给user添加了avatar字段">
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="给user添加了nick_name字段">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd890ae1-cfc2-4c1a-8364-6e89ae25e6b6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd890ae1-cfc2-4c1a-8364-6e89ae25e6b6/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T025302.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T025442.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T031631.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T031728.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T031816.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T031827.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T031942.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T032308.404.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T032324.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T034121.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T034123.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T054523.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T054558.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T055004.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T055023.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T083057.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T083110.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T083120.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T083406.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T083413.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T083418.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T085910.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T090148.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2020-12-10T090204.200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/User.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/SubGoods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/User.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/ErrCode.go" beforeDir="false" afterPath="$PROJECT_DIR$/Result/ErrCode.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/SubGoods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/Utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Utils.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -559,7 +589,8 @@
     <MESSAGE value="接口返回添加了msg，添加了注册接口" />
     <MESSAGE value="完善部分代码" />
     <MESSAGE value="给user添加了avatar字段" />
-    <option name="LAST_COMMIT_MESSAGE" value="给user添加了avatar字段" />
+    <MESSAGE value="给user添加了nick_name字段" />
+    <option name="LAST_COMMIT_MESSAGE" value="给user添加了nick_name字段" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607532763283">
@@ -578,50 +609,50 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="640" y="309" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1607532151488" />
-    <state width="1637" height="257" key="GridCell.Tab.0.bottom" timestamp="1607663725041">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state width="1493" height="222" key="GridCell.Tab.0.bottom" timestamp="1607962238446">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1397" height="276" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1607657833086" />
-    <state width="1493" height="262" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607617797286" />
-    <state width="1637" height="257" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1607663725041" />
-    <state width="1637" height="257" key="GridCell.Tab.0.center" timestamp="1607663725040">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state width="1493" height="222" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607962238446" />
+    <state width="1637" height="257" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1607664518298" />
+    <state width="1493" height="222" key="GridCell.Tab.0.center" timestamp="1607962238446">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1397" height="276" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1607657833086" />
-    <state width="1493" height="262" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607617797286" />
-    <state width="1637" height="257" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1607663725040" />
-    <state width="1637" height="257" key="GridCell.Tab.0.left" timestamp="1607663725040">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state width="1493" height="222" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607962238446" />
+    <state width="1637" height="257" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1607664518298" />
+    <state width="1493" height="222" key="GridCell.Tab.0.left" timestamp="1607962238446">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1397" height="276" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1607657833086" />
-    <state width="1493" height="262" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607617797286" />
-    <state width="1637" height="257" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1607663725040" />
-    <state width="1637" height="257" key="GridCell.Tab.0.right" timestamp="1607663725040">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state width="1493" height="222" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607962238446" />
+    <state width="1637" height="257" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1607664518298" />
+    <state width="1493" height="222" key="GridCell.Tab.0.right" timestamp="1607962238446">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1397" height="276" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1607657833086" />
-    <state width="1493" height="262" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607617797286" />
-    <state width="1637" height="257" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1607663725040" />
-    <state width="1637" height="257" key="GridCell.Tab.1.bottom" timestamp="1607663725041">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state width="1493" height="222" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607962238446" />
+    <state width="1637" height="257" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1607664518298" />
+    <state width="1493" height="222" key="GridCell.Tab.1.bottom" timestamp="1607962238372">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="284" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607617796174" />
-    <state width="1637" height="257" key="GridCell.Tab.1.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1607663725041" />
-    <state width="1637" height="257" key="GridCell.Tab.1.center" timestamp="1607663725041">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state width="1493" height="222" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607962238372" />
+    <state width="1637" height="257" key="GridCell.Tab.1.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1607664518171" />
+    <state width="1493" height="222" key="GridCell.Tab.1.center" timestamp="1607962238372">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="284" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607617796174" />
-    <state width="1637" height="257" key="GridCell.Tab.1.center/0.0.1680.1010@0.0.1680.1010" timestamp="1607663725041" />
-    <state width="1637" height="257" key="GridCell.Tab.1.left" timestamp="1607663725041">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state width="1493" height="222" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607962238372" />
+    <state width="1637" height="257" key="GridCell.Tab.1.center/0.0.1680.1010@0.0.1680.1010" timestamp="1607664518171" />
+    <state width="1493" height="222" key="GridCell.Tab.1.left" timestamp="1607962238372">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="284" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607617796174" />
-    <state width="1637" height="257" key="GridCell.Tab.1.left/0.0.1680.1010@0.0.1680.1010" timestamp="1607663725041" />
-    <state width="1637" height="257" key="GridCell.Tab.1.right" timestamp="1607663725041">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state width="1493" height="222" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607962238372" />
+    <state width="1637" height="257" key="GridCell.Tab.1.left/0.0.1680.1010@0.0.1680.1010" timestamp="1607664518171" />
+    <state width="1493" height="222" key="GridCell.Tab.1.right" timestamp="1607962238372">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="284" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607617796174" />
-    <state width="1637" height="257" key="GridCell.Tab.1.right/0.0.1680.1010@0.0.1680.1010" timestamp="1607663725041" />
+    <state width="1493" height="222" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607962238372" />
+    <state width="1637" height="257" key="GridCell.Tab.1.right/0.0.1680.1010@0.0.1680.1010" timestamp="1607664518171" />
     <state x="549" y="217" key="RestClientTextRequest" timestamp="1607605331203">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -630,11 +661,12 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="540" y="36" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607611681894" />
-    <state x="338" y="151" key="Vcs.Push.Dialog.v2" timestamp="1607657809719">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="394" y="177" key="Vcs.Push.Dialog.v2" timestamp="1607664798846">
+      <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="338" y="151" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1607657809719" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1607617378422" />
+    <state x="394" y="177" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1607664798846" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1607532996209">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

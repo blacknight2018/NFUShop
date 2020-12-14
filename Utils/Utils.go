@@ -72,7 +72,6 @@ func ParseJWT(token string) interface{} {
 func ContextGetInt(context *gin.Context, key string) int {
 	var ret int
 	if v, ok := context.Get(key); ok {
-
 		switch data := v.(type) {
 		case int:
 			ret = data
@@ -85,5 +84,10 @@ func ContextGetInt(context *gin.Context, key string) int {
 			break
 		}
 	}
+	return ret
+}
+func ContextQueryInt(context *gin.Context, key string) int {
+	data := context.Query(key)
+	ret, _ := strconv.Atoi(data)
 	return ret
 }

@@ -26,6 +26,7 @@ func main() {
 	home := v1.Group("/home")
 	cart := v1.Group("/cart")
 	user := v1.Group("/user")
+	goods := v1.Group("/goods")
 
 	v1.POST("/login", func(context *gin.Context) {
 		phone := context.PostForm("phone")
@@ -43,7 +44,15 @@ func main() {
 		passWord := context.PostForm("pass_word")
 		context.Writer.Write([]byte(Service.Register(phone, passWord).Get()))
 	})
-
+	goods.GET("", func(context *gin.Context) {
+		subGoodsId := Utils.StrToInt(context.Query("sub_goods_id"))
+		context.Writer.Write([]byte(Service.GetSubGoodsDetail(subGoodsId).Get()))
+	})
+	goods.GET("/query", func(context *gin.Context) {
+		templateValue := context.Query("template_index")
+		goodsId := Utils.ContextQueryInt(context, "goods_id")
+		context.Writer.Write(([]byte)(Service.GetSubGoodsByTemplateIndex(goodsId, templateValue).Get()))
+	})
 	user.GET("", func(context *gin.Context) {
 		userId := Utils.ContextGetInt(context, "user_id")
 		context.Writer.Write([]byte(Service.GetUser(userId).Get()))
