@@ -82,3 +82,20 @@ func SelectCartSetByUserId(userId int, limit int, offset int) (bool, []Cart) {
 	var cartSet []Cart
 	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, map[string]interface{}{"user_id": userId}, limit, offset, utils.EmptyString), cartSet
 }
+
+/**
+ * @Description:
+ * @param userId
+ * @param subGoodsId
+ * @return bool
+ * @return *Cart
+ */
+func SelectUserCartBySubGoodsId(userId int, subGoodsId int) (bool, *Cart) {
+	var cartSet []Cart
+	condition := map[string]interface{}{"user_id": userId, "sub_goods_id": subGoodsId}
+	SelectTableRecordSet((&Cart{}).TableName(), &cartSet, condition, 1, 0, utils.EmptyString)
+	if len(cartSet) >= 1 {
+		return true, &cartSet[0]
+	}
+	return false, nil
+}

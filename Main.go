@@ -73,6 +73,12 @@ func main() {
 		cartId := Utils.StrToInt(context.Query("cart_id"))
 		fmt.Println(cartId)
 	})
+	cart.POST("", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
+		subGoodsId := Utils.StrToInt(context.PostForm("sub_goods_id"))
+		fmt.Println(userId, subGoodsId)
+		context.Writer.Write([]byte(Service.AddSubGoodsToCart(userId, subGoodsId).Get()))
+	})
 
 	r.Run(":" + strconv.Itoa(Config.GetBindPort()))
 }

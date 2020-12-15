@@ -74,19 +74,19 @@ func UpdateDBObj(in interface{}) bool {
 		db.Model(&User{}).Where("id = ?", v.Id).Update(v)
 		break
 	case *Address:
-		db.Model(&User{}).Where("id = ?", v.Id).Update(v)
+		db.Model(&Address{}).Where("id = ?", v.Id).Update(v)
 		break
 	case *Goods:
-		db.Model(&User{}).Where("id = ?", v.Id).Update(v)
+		db.Model(&Goods{}).Where("id = ?", v.Id).Update(v)
 		break
 	case *SubGoods:
-		db.Model(&User{}).Where("id = ?", v.Id).Update(v)
+		db.Model(&SubGoods{}).Where("id = ?", v.Id).Update(v)
 		break
 	case *Cart:
-		db.Model(&User{}).Where("id = ?", v.Id).Update(v)
+		db.Model(&Cart{}).Where("id = ?", v.Id).Update(v)
 		break
 	case *Order:
-		db.Model(&User{}).Where("id = ?", v.Id).Update(v)
+		db.Model(&Order{}).Where("id = ?", v.Id).Update(v)
 		break
 	}
 	return err == nil
