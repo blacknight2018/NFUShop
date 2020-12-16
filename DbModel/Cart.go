@@ -80,7 +80,7 @@ func SelectCartSet(condition map[string]interface{}, limit int, offset int) (boo
  */
 func SelectCartSetByUserId(userId int, limit int, offset int) (bool, []Cart) {
 	var cartSet []Cart
-	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, map[string]interface{}{"user_id": userId}, limit, offset, utils.EmptyString), cartSet
+	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, map[string]interface{}{"user_id": userId}, limit, offset, "create_time desc"), cartSet
 }
 
 /**

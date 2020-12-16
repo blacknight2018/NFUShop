@@ -5,11 +5,32 @@ import (
 	"NFUShop/Result"
 )
 
-func GetUserCartSet(UserId int) Result.Result {
+func GetUserCartSet(UserId int, limit int, offset int) Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
-	if ok, data := DbModel.SelectCartSetByUserId(UserId, 5, 0); ok {
+	if ok, data := DbModel.SelectCartSetByUserId(UserId, limit, offset); ok {
+		type name struct {
+			DbModel.Cart
+			Title    string           `json:"title"`
+			Desc     string           `json:"desc"`
+			SubGoods DbModel.SubGoods `json:"sub_goods"`
+		}
+		var retData []name
+		for _, v := range data {
+			var t name
+			t.Cart = v
+			if ok2, data2 := DbModel.SelectSubGoodsBySubGoodsId(v.SubGoodsId); ok2 && data2 != nil {
+				t.SubGoods = *data2
+				if ok3, data3 := DbModel.SelectGoodsByGoodsId(data2.GoodsId); ok3 {
+					t.Title = data3.Title
+					t.Desc = data3.Desc
+				}
+			}
+
+			retData = append(retData, t)
+		}
+
 		r.Code = Result.Ok
-		r.Data = data
+		r.Data = retData
 	}
 	return r
 }

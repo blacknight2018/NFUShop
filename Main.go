@@ -18,7 +18,6 @@ func main() {
 		if token, err := context.Cookie("token"); err == nil {
 			if userId, ok := Utils.ParseJWT(token).(float64); ok {
 				context.Set("user_id", userId)
-				fmt.Println(userId)
 			}
 		}
 		context.Next()
@@ -67,11 +66,16 @@ func main() {
 
 	cart.GET("", func(context *gin.Context) {
 		userId := Utils.ContextGetInt(context, "user_id")
-		context.Writer.Write([]byte(Service.GetUserCartSet(userId).Get()))
+		limit := Utils.ContextQueryInt(context, "limit")
+		offset := Utils.ContextQueryInt(context, "offset")
+		fmt.Println(limit, offset)
+		context.Writer.Write([]byte(Service.GetUserCartSet(userId, limit, offset).Get()))
 	})
 	cart.DELETE("", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
 		cartId := Utils.StrToInt(context.Query("cart_id"))
-		fmt.Println(cartId)
+		context.Writer.Write([]byte(Service.RemoveCart(userId, cartId).Get()))
+
 	})
 	cart.POST("", func(context *gin.Context) {
 		userId := Utils.ContextGetInt(context, "user_id")
