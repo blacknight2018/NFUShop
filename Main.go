@@ -26,6 +26,7 @@ func main() {
 	cart := v1.Group("/cart")
 	user := v1.Group("/user")
 	goods := v1.Group("/goods")
+	address := v1.Group("/address")
 
 	v1.POST("/login", func(context *gin.Context) {
 		phone := context.PostForm("phone")
@@ -42,6 +43,30 @@ func main() {
 		phone := context.PostForm("phone")
 		passWord := context.PostForm("pass_word")
 		context.Writer.Write([]byte(Service.Register(phone, passWord).Get()))
+	})
+	address.DELETE("", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
+		addressId := Utils.StrToInt(context.Query("address_id"))
+		context.Writer.Write([]byte(Service.RemoveAddress(userId, addressId).Get()))
+	})
+	address.GET("", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
+		limit := Utils.ContextQueryInt(context, "limit")
+		offset := Utils.ContextQueryInt(context, "offset")
+		addressId := Utils.ContextQueryInt(context, "address_id")
+		if addressId != 0 {
+			context.Writer.Write([]byte(Service.GetUserAddress(userId, addressId).Get()))
+			return
+		}
+		context.Writer.Write([]byte(Service.GetUserAddressSet(userId, limit, offset).Get()))
+	})
+	address.POST("", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
+		phone := context.PostForm("phone")
+		name := context.PostForm("name")
+		sex := context.PostForm("sex")
+		detail := context.PostForm("detail")
+		context.Writer.Write([]byte(Service.AddUserAddress(userId, name, phone, sex, detail).Get()))
 	})
 	goods.GET("", func(context *gin.Context) {
 		subGoodsId := Utils.StrToInt(context.Query("sub_goods_id"))

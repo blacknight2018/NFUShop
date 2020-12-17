@@ -5,6 +5,13 @@ import (
 	"NFUShop/Result"
 )
 
+/**
+ * @Description: 获取用户的购物车列表
+ * @param UserId
+ * @param limit
+ * @param offset
+ * @return Result.Result
+ */
 func GetUserCartSet(UserId int, limit int, offset int) Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
 	if ok, data := DbModel.SelectCartSetByUserId(UserId, limit, offset); ok {
@@ -35,6 +42,12 @@ func GetUserCartSet(UserId int, limit int, offset int) Result.Result {
 	return r
 }
 
+/**
+ * @Description: 添加商品进用户的购物车
+ * @param userId
+ * @param subGoodsId
+ * @return Result.Result
+ */
 func AddSubGoodsToCart(userId int, subGoodsId int) Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
 	var cart DbModel.Cart
@@ -54,6 +67,12 @@ func AddSubGoodsToCart(userId int, subGoodsId int) Result.Result {
 	return r
 }
 
+/**
+ * @Description: 移除商品出用户的购物车
+ * @param UserId
+ * @param CartId
+ * @return Result.Result
+ */
 func RemoveCart(UserId int, CartId int) Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
 	if DbModel.DeleteCartByUserId(CartId, UserId) {

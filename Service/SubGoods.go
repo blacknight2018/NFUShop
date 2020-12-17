@@ -39,7 +39,7 @@ func GetNewestSubGoods() Result.Result {
 }
 
 /**
- * @Description: 返回子商品信息和所属的商品信息
+ * @Description: 返回子商品信息
  * @param subGoodsId
  * @return Result.Result
  */

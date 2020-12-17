@@ -103,6 +103,9 @@ func DeleteDBObj(in interface{}) bool {
 	case *Cart:
 		err = db.Delete(v).Error
 		break
+	case *Address:
+		err = db.Delete(v).Error
+		break
 	}
 	return err == nil
 }
