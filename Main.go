@@ -26,6 +26,7 @@ func main() {
 	cart := v1.Group("/cart")
 	user := v1.Group("/user")
 	goods := v1.Group("/goods")
+	order := v1.Group("/order")
 	address := v1.Group("/address")
 
 	v1.POST("/login", func(context *gin.Context) {
@@ -107,6 +108,20 @@ func main() {
 		subGoodsId := Utils.StrToInt(context.PostForm("sub_goods_id"))
 		fmt.Println(userId, subGoodsId)
 		context.Writer.Write([]byte(Service.AddSubGoodsToCart(userId, subGoodsId).Get()))
+	})
+	order.GET("/query", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
+		addressId := Utils.StrToInt(context.Query("address_id"))
+		cartArray := context.Query("cart_id")
+		fmt.Println(userId, addressId, cartArray)
+		context.Writer.Write([]byte(Service.QueryOrder(userId, addressId, Utils.GetJSONIntArray(cartArray)).Get()))
+	})
+	order.POST("/submit", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
+		addressId := Utils.StrToInt(context.PostForm("address_id"))
+		cartArray := context.PostForm("cart_id")
+		fmt.Println(userId, addressId, cartArray)
+		context.Writer.Write([]byte(Service.CreateOrder(userId, addressId, Utils.GetJSONIntArray(cartArray)).Get()))
 	})
 
 	r.Run(":" + strconv.Itoa(Config.GetBindPort()))

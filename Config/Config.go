@@ -40,7 +40,7 @@ func GetOneDB() *gorm.DB {
 		panic(err)
 	}
 	db.DB().SetConnMaxIdleTime(5)
-	db.DB().SetMaxOpenConns(1)
+	db.DB().SetMaxOpenConns(10)
 	db.LogMode(true)
 	return db
 }

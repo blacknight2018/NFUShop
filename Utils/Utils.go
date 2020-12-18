@@ -16,6 +16,13 @@ func GetJSONStringArray(jsonString string) []string {
 	json.Unmarshal([]byte(jsonString), &ret)
 	return ret
 }
+
+func GetJSONIntArray(jsonString string) []int {
+	var ret []int
+	json.Unmarshal([]byte(jsonString), &ret)
+	return ret
+}
+
 func StringArrayToJSON(strArray []string) string {
 	if bytes, err := json.Marshal(strArray); err == nil {
 		return string(bytes)

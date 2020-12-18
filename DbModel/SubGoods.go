@@ -1,6 +1,7 @@
 package DbModel
 
 import (
+	"github.com/jinzhu/gorm"
 	"ny2/utils"
 	"time"
 )
@@ -28,7 +29,12 @@ func (s *SubGoods) Update() bool {
 func (s *SubGoods) Insert() bool {
 	return InsertDBObj(s)
 }
-
+func (s *SubGoods) InsertWithDB(db *gorm.DB) bool {
+	return db.Create(s).Error == nil
+}
+func (s *SubGoods) UpdateWithDB(db *gorm.DB) bool {
+	return db.Model(&SubGoods{}).Where("id = ?", s.Id).Update(s).Error == nil
+}
 func SelectSubGoodsBySubGoodsId(subGoodsId int) (bool, *SubGoods) {
 	var subGoods SubGoods
 	return SelectTableRecordById((&SubGoods{}).TableName(), subGoodsId, nil, &subGoods), &subGoods

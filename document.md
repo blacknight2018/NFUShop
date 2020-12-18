@@ -1,3 +1,9 @@
+```mermain
+graph TB
+    User--->Order--->Address--->Cart--->SubGoods--->Goods
+```
+
+
 ```mermaid
 graph TB
     User--->Order
@@ -7,7 +13,6 @@ graph TB
     Cart--->Sub_Goods
     Sub_Goods--->Result
     Result--->Utils
-
     Gin--->UID--->CID--->Api--->Service
     Gin--->UID--->GoodsID--->Api--->Service
     Gin--->UID--->AID--->Api--->Service
@@ -23,5 +28,4 @@ graph TB
     Service--->GetCart--->GetSubGoods
     SearchSubGoods--->User
     
-
 ```

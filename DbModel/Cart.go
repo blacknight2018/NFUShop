@@ -2,6 +2,7 @@ package DbModel
 
 import (
 	"NFUShop/Config"
+	"github.com/jinzhu/gorm"
 	"ny2/utils"
 	"time"
 )
@@ -29,6 +30,10 @@ func (c *Cart) Insert() bool {
 
 func (c *Cart) Delete() bool {
 	return DeleteDBObj(c)
+}
+
+func (c *Cart) DeleteWithDB(db *gorm.DB) bool {
+	return db.Delete(c).Error == nil
 }
 
 /**
