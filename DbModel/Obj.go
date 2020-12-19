@@ -110,30 +110,37 @@ func DeleteDBObj(in interface{}) bool {
 	return err == nil
 }
 
-func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, limit int, offset int, order string) bool {
+func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, limit *int, offset *int, order string) bool {
 	db := Config.GetOneDB()
 	if db == nil {
 		return false
 	}
+	dbCondition := db.Table(tableName).Where(condition).Order(order)
+	if limit != nil {
+		dbCondition.Limit(*limit)
+	}
+	if offset != nil {
+		dbCondition.Offset(*offset)
+	}
 	var err error
 	switch v := out.(type) {
 	case *[]User:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
+		err = dbCondition.Find(v).Error
 		break
 	case *[]Order:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
+		err = dbCondition.Find(v).Error
 		break
 	case *[]Cart:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
+		err = dbCondition.Find(v).Error
 		break
 	case *[]Goods:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
+		err = dbCondition.Find(v).Error
 		break
 	case *[]SubGoods:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
+		err = dbCondition.Find(v).Error
 		break
 	case *[]Address:
-		err = db.Table(tableName).Where(condition).Limit(limit).Offset(offset).Order(order).Find(v).Error
+		err = dbCondition.Find(v).Error
 		break
 	}
 	defer db.Close()

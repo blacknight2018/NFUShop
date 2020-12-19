@@ -9,7 +9,7 @@ import (
 type SubGoods struct {
 	Id         int        `json:"id" gorm:"column:id;primary_key"`
 	Price      float32    `json:"price" gorm:"column:price"`
-	Stoke      int        `json:"stoke" gorm:"column:stoke"`
+	Stoke      *int       `json:"stoke" gorm:"column:stoke"`
 	Sell       int        `json:"sell" gorm:"column:sell"`
 	Img        string     `json:"img" gorm:"column:img"`
 	GoodsId    int        `json:"goods_id" gorm:"column:goods_id"`
@@ -40,25 +40,33 @@ func SelectSubGoodsBySubGoodsId(subGoodsId int) (bool, *SubGoods) {
 	return SelectTableRecordById((&SubGoods{}).TableName(), subGoodsId, nil, &subGoods), &subGoods
 }
 
+func SelectSubGoodsByGoodsId(goodsId int) (bool, []SubGoods) {
+	var subGoodsSet []SubGoods
+	var condition = make(map[string]interface{})
+	condition["goods_id"] = goodsId
+	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, nil, nil, utils.EmptyString), subGoodsSet
+}
 func SelectSubGoodsSet(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
 	var subGoodsSet []SubGoods
-	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, limit, offset, utils.EmptyString), subGoodsSet
+	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, &limit, &offset, utils.EmptyString), subGoodsSet
 }
 
 func SelectSubGoodsSetDescCreateTime(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
 	var subGoodsSet []SubGoods
-	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, limit, offset, "create_time desc"), subGoodsSet
+	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, &limit, &offset, "create_time desc"), subGoodsSet
 }
 
 func SelectSubGoodsSetDescSell(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
 	var subGoodsSet []SubGoods
-	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, limit, offset, "sell desc"), subGoodsSet
+	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, &limit, &offset, "sell desc"), subGoodsSet
 }
 
 func SelectSubGoodsByTemplateIndex(goodsId int, templateIndex string) (bool, *SubGoods) {
 	var subGoodsSet []SubGoods
 	condition := map[string]interface{}{"goods_id": goodsId, "template": templateIndex}
-	SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, 1, 0, utils.EmptyString)
+	limit := 1
+	offset := 0
+	SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, &limit, &offset, utils.EmptyString)
 	if len(subGoodsSet) == 0 {
 		return false, nil
 	}

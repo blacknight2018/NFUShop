@@ -47,7 +47,9 @@ func CreateOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 		if tx != nil {
 			for idx, v := range subGoodsIdSet {
 				if ok2, subGoods := DbModel.SelectSubGoodsBySubGoodsId(v); ok2 {
-					subGoods.Stoke -= amountSet[idx]
+					tmp := *subGoods.Stoke - amountSet[idx]
+					subGoods.Stoke = &tmp
+					subGoods.Sell += amountSet[idx]
 					totalPrice += float32(amountSet[idx]) * subGoods.Price
 					if false == subGoods.UpdateWithDB(trans) {
 						trans.Rollback()
@@ -58,7 +60,6 @@ func CreateOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 					trans.Rollback()
 					return ret
 				}
-
 			}
 			var subGoodsIdJson string
 			if bytes, err := json.Marshal(subGoodsIdSet); err == nil {

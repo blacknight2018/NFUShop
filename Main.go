@@ -78,6 +78,11 @@ func main() {
 		goodsId := Utils.ContextQueryInt(context, "goods_id")
 		context.Writer.Write(([]byte)(Service.GetSubGoodsByTemplateIndex(goodsId, templateValue).Get()))
 	})
+
+	goods.GET("/search", func(context *gin.Context) {
+		keyWord := context.Query("key")
+		context.Writer.Write([]byte(Service.SearchGoodsByTitle(keyWord, 5, 0).Get()))
+	})
 	user.GET("", func(context *gin.Context) {
 		userId := Utils.ContextGetInt(context, "user_id")
 		context.Writer.Write([]byte(Service.GetUser(userId).Get()))
