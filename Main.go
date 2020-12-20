@@ -81,7 +81,9 @@ func main() {
 
 	goods.GET("/search", func(context *gin.Context) {
 		keyWord := context.Query("key")
-		context.Writer.Write([]byte(Service.SearchGoodsByTitle(keyWord, 5, 0).Get()))
+		limit := Utils.ContextQueryInt(context, "limit")
+		offset := Utils.ContextQueryInt(context, "offset")
+		context.Writer.Write([]byte(Service.SearchGoodsByTitle(keyWord, limit, offset).Get()))
 	})
 	user.GET("", func(context *gin.Context) {
 		userId := Utils.ContextGetInt(context, "user_id")
@@ -113,6 +115,14 @@ func main() {
 		subGoodsId := Utils.StrToInt(context.PostForm("sub_goods_id"))
 		fmt.Println(userId, subGoodsId)
 		context.Writer.Write([]byte(Service.AddSubGoodsToCart(userId, subGoodsId).Get()))
+	})
+	order.GET("", func(context *gin.Context) {
+		userId := Utils.ContextGetInt(context, "user_id")
+		status := Utils.StrToInt(context.Query("status"))
+		limit := Utils.ContextQueryInt(context, "limit")
+		offset := Utils.ContextQueryInt(context, "offset")
+		context.Writer.Write([]byte(Service.GetOrder(userId, status, limit, offset).Get()))
+		fmt.Println(userId, limit, offset, status)
 	})
 	order.GET("/query", func(context *gin.Context) {
 		userId := Utils.ContextGetInt(context, "user_id")

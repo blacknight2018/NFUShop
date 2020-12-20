@@ -24,8 +24,10 @@ func SearchGoodsByTitle(title string, limit int, offset int) Result.Result {
 				}
 			}
 			tmp.SubGoods = subGoodsSet
+			retData = append(retData, tmp)
 		}
-		retData = append(retData, tmp)
+
+		ret.Code = Result.Ok
 		ret.Data = retData
 	}
 	return ret

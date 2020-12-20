@@ -117,10 +117,10 @@ func SelectTableRecordSet(tableName string, out interface{}, condition map[strin
 	}
 	dbCondition := db.Table(tableName).Where(condition).Order(order)
 	if limit != nil {
-		dbCondition.Limit(*limit)
+		dbCondition = dbCondition.Limit(*limit)
 	}
 	if offset != nil {
-		dbCondition.Offset(*offset)
+		dbCondition = dbCondition.Offset(*offset)
 	}
 	var err error
 	switch v := out.(type) {

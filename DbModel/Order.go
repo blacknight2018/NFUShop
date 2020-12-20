@@ -2,7 +2,6 @@ package DbModel
 
 import (
 	"github.com/jinzhu/gorm"
-	"ny2/utils"
 	"time"
 )
 
@@ -37,9 +36,9 @@ func SelectOrderByOrderId(orderId int) (bool, *Order) {
 	return SelectTableRecordById((&Order{}).TableName(), orderId, nil, &order), &order
 }
 
-func SelectOrderSet(condition map[string]interface{}, limit int, offset int) (bool, []Order) {
+func SelectOrderSet(condition map[string]interface{}, limit int, offset int, order string) (bool, []Order) {
 	var orderSet []Order
-	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, &limit, &offset, utils.EmptyString), orderSet
+	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, &limit, &offset, order), orderSet
 }
 
 func (o *Order) InsertOrderWithDB(db *gorm.DB) bool {

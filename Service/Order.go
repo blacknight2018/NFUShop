@@ -8,7 +8,9 @@ import (
 )
 
 const (
+	All        = iota
 	UnPay      = iota
+	Pay        = iota
 	UnDelivery = iota
 	Delivery   = iota
 )
@@ -142,6 +144,46 @@ func QueryOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 	retData.TotalPrice = totalPrice
 	ret.Data = retData
 	ret.Code = Result.Ok
+
+	return ret
+}
+
+/**
+ * @Description: 查询订单
+ * @param userId
+ * @param status
+ * @param limit
+ * @param offset
+ * @return Result.Result
+ */
+func GetOrder(userId int, status int, limit int, offset int) Result.Result {
+	ret := Result.Result{Code: Result.UnKnow}
+	condition := make(map[string]interface{})
+	condition["status"] = status
+	type name struct {
+		DbModel.Order
+		Img []string `json:"img"`
+	}
+	var retData []name
+	if ok, data := DbModel.SelectOrderSet(condition, limit, offset, "id desc"); ok {
+		for _, order := range data {
+			var tmp name
+			var img []string
+			var subGoodsId []int
+			json.Unmarshal([]byte(order.SubGoods), &subGoodsId)
+			for _, subGoodsId := range subGoodsId {
+				if ok2, subGoods := DbModel.SelectSubGoodsBySubGoodsId(subGoodsId); ok2 {
+					img = append(img, subGoods.Img)
+				}
+			}
+			tmp.Img = img
+			tmp.Order = order
+
+			retData = append(retData, tmp)
+		}
+		ret.Data = retData
+		ret.Code = Result.Ok
+	}
 
 	return ret
 }
