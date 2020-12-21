@@ -159,7 +159,10 @@ func QueryOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 func GetOrder(userId int, status int, limit int, offset int) Result.Result {
 	ret := Result.Result{Code: Result.UnKnow}
 	condition := make(map[string]interface{})
-	condition["status"] = status
+	if status != All {
+		condition["status"] = status
+	}
+
 	type name struct {
 		DbModel.Order
 		Img []string `json:"img"`
