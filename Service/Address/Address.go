@@ -1,4 +1,4 @@
-package Service
+package Address
 
 import (
 	"NFUShop/DbModel"

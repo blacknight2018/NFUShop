@@ -1,10 +1,37 @@
-package Service
+package Goods
 
 import (
 	"NFUShop/DbModel"
 	"NFUShop/Result"
 )
 
+func GetGoodsSell(goodsId int) int {
+	var ret int
+	if ok, data := DbModel.SelectSubGoodsByGoodsId(goodsId); ok {
+		for _, v := range data {
+			ret += v.Sell
+		}
+	}
+	return ret
+}
+
+func GetGoodsStoke(goodsId int) int {
+	var ret int
+	if ok, data := DbModel.SelectSubGoodsByGoodsId(goodsId); ok {
+		for _, v := range data {
+			ret += *v.Stoke
+		}
+	}
+	return ret
+}
+
+/**
+ * @Description: 搜索
+ * @param title
+ * @param limit
+ * @param offset
+ * @return Result.Result
+ */
 func SearchGoodsByTitle(title string, limit int, offset int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow

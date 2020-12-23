@@ -1,6 +1,6 @@
 ```mermain
 graph TB
-    User--->Order--->Address--->Cart--->SubGoods--->Goods
+    Order--->Address--->User--->Cart--->SubGoods--->Goods
 ```
 
 

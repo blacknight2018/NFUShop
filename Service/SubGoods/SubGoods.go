@@ -1,4 +1,4 @@
-package Service
+package SubGoods
 
 import (
 	"NFUShop/DbModel"

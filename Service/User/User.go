@@ -1,4 +1,4 @@
-package Service
+package User
 
 import (
 	"NFUShop/DbModel"

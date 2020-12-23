@@ -41,7 +41,7 @@ type Order struct {
 	TotalPrice   float32 `json:"total_price" gorm:"column:total_price"`
 	CreateTime   Time    `json:"create_time" gorm:"column:create_time" sql:"-"`
 	UpdateTime   Time    `json:"update_time" gorm:"column:update_time" sql:"-"`
-	DeliveryCode string  `json:"delivery_code"`
+	DeliveryCode string  `json:"delivery_code" gorm:"column:delivery_code"`
 }
 
 func (o *Order) TableName() string {

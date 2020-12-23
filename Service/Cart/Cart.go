@@ -1,4 +1,4 @@
-package Service
+package Cart
 
 import (
 	"NFUShop/DbModel"
