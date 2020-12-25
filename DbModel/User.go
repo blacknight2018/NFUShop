@@ -1,8 +1,8 @@
 package DbModel
 
 import (
+	"NFUShop/Utils"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"ny2/utils"
 	"time"
 )
 
@@ -32,7 +32,7 @@ func SelectUserByPhone(phone string) (bool, *User) {
 	var userSet []User
 	limit := 1
 	offset := 0
-	ok := SelectTableRecordSet((&User{}).TableName(), &userSet, map[string]interface{}{"phone": phone}, &limit, &offset, utils.EmptyString)
+	ok := SelectTableRecordSet((&User{}).TableName(), &userSet, map[string]interface{}{"phone": phone}, &limit, &offset, Utils.EmptyString)
 	if ok && len(userSet) > 0 {
 		return ok, &userSet[0]
 	}
@@ -46,5 +46,5 @@ func SelectUserByUserId(userId int) (bool, *User) {
 
 func SelectUserSet(condition map[string]interface{}, limit int, offset int) (bool, []User) {
 	var userSet []User
-	return SelectTableRecordSet((&User{}).TableName(), &userSet, condition, &limit, &offset, utils.EmptyString), userSet
+	return SelectTableRecordSet((&User{}).TableName(), &userSet, condition, &limit, &offset, Utils.EmptyString), userSet
 }
