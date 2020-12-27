@@ -29,7 +29,7 @@ func (g *Goods) Insert() bool {
 	return InsertDBObj(g)
 }
 
-func SelectGoodsLikeTitle(title string, limit int, offset int) (bool, []Goods) {
+func SelectGoodsSetLikeTitle(title string, limit int, offset int) (bool, []Goods) {
 	var goodsSet []Goods
 
 	db := Config.GetOneDB()

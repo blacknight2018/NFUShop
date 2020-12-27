@@ -33,7 +33,20 @@ func GetNewestSubGoods() Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
 	if ok, data := DbModel.SelectSubGoodsSetDescCreateTime(nil, 6, 0); ok {
 		r.Code = Result.Ok
-		r.Data = data
+		type name struct {
+			Title string `json:"title"`
+			DbModel.SubGoods
+		}
+		var retData []name
+		for _, v := range data {
+			if ok, goods := DbModel.SelectGoodsByGoodsId(v.GoodsId); ok {
+				var tmp name
+				tmp.Title = goods.Title
+				tmp.SubGoods = v
+				retData = append(retData, tmp)
+			}
+		}
+		r.Data = retData
 	}
 	return r
 }

@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	All        = iota
 	UnPay      = iota
 	Pay        = iota
 	UnDelivery = iota
 	Delivery   = iota
+	All        = iota
 )
 
 /**

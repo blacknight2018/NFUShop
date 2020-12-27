@@ -1,6 +1,7 @@
 package DbModel
 
 import (
+	"NFUShop/Config"
 	"NFUShop/Utils"
 	"github.com/jinzhu/gorm"
 	"time"
@@ -40,7 +41,7 @@ func SelectSubGoodsBySubGoodsId(subGoodsId int) (bool, *SubGoods) {
 	return SelectTableRecordById((&SubGoods{}).TableName(), subGoodsId, nil, &subGoods), &subGoods
 }
 
-func SelectSubGoodsByGoodsId(goodsId int) (bool, []SubGoods) {
+func SelectSubGoodsSetByGoodsId(goodsId int) (bool, []SubGoods) {
 	var subGoodsSet []SubGoods
 	var condition = make(map[string]interface{})
 	condition["goods_id"] = goodsId
@@ -52,13 +53,43 @@ func SelectSubGoodsSet(condition map[string]interface{}, limit int, offset int) 
 }
 
 func SelectSubGoodsSetDescCreateTime(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
+	db := Config.GetOneDB()
+	if db == nil {
+		return false, nil
+	}
+	defer db.Close()
 	var subGoodsSet []SubGoods
-	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, &limit, &offset, "create_time desc"), subGoodsSet
+	err := db.Table("sub_goods").Group("goods_id").Order("create_time desc").Limit(limit).Offset(offset).Find(&subGoodsSet).Error
+	if err == nil {
+		return true, subGoodsSet
+	}
+	return false, nil
 }
 
 func SelectSubGoodsSetDescSell(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
+	db := Config.GetOneDB()
+	if db == nil {
+		return false, nil
+	}
+	defer db.Close()
 	var subGoodsSet []SubGoods
-	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, &limit, &offset, "sell desc"), subGoodsSet
+	err := db.Table("sub_goods").Group("goods_id").Order("sell desc").Limit(limit).Offset(offset).Find(&subGoodsSet).Error
+	if err == nil {
+		return true, subGoodsSet
+	}
+	return false, nil
+}
+
+func SelectSubGoodsSetDescPriceByGoodsId(goodsId int, limit int, offset int) (bool, []SubGoods) {
+	db := Config.GetOneDB()
+	if db == nil {
+		return false, nil
+	}
+	defer db.Close()
+	condition := make(map[string]interface{})
+	condition["id"] = goodsId
+	return SelectSubGoodsSet(condition, limit, offset)
+
 }
 
 func SelectSubGoodsByTemplateIndex(goodsId int, templateIndex string) (bool, *SubGoods) {
