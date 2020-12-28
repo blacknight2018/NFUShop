@@ -12,9 +12,9 @@ import (
  * @param offset
  * @return Result.Result
  */
-func GetUserCartSet(UserId int, limit int, offset int) Result.Result {
+func GetUserCartList(userId int, limit int, offset int) Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
-	if ok, data := DbModel.SelectCartSetByUserId(UserId, limit, offset); ok {
+	if ok, data := DbModel.SelectCartSetByUserId(userId, limit, offset); ok {
 		type name struct {
 			DbModel.Cart
 			Title    string           `json:"title"`
@@ -73,9 +73,9 @@ func AddSubGoodsToCart(userId int, subGoodsId int) Result.Result {
  * @param CartId
  * @return Result.Result
  */
-func RemoveCart(UserId int, CartId int) Result.Result {
+func RemoveCart(userId int, cartId int) Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
-	if DbModel.DeleteCartByUserId(CartId, UserId) {
+	if DbModel.DeleteCartByUserId(cartId, userId) {
 		r.Code = Result.Ok
 	}
 	return r

@@ -3,8 +3,13 @@ package SubGoods
 import (
 	"NFUShop/DbModel"
 	"NFUShop/Result"
+	"NFUShop/Service/Goods"
 )
 
+/**
+ * @Description: 获取最热销的子商品
+ * @return Result.Result
+ */
 func GetHotSubGoods() Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
 	if ok, data := DbModel.SelectSubGoodsSetDescSell(nil, 6, 0); ok {
@@ -29,6 +34,10 @@ func GetHotSubGoods() Result.Result {
 	return r
 }
 
+/**
+ * @Description: 获取最新的子商品
+ * @return Result.Result
+ */
 func GetNewestSubGoods() Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
 	if ok, data := DbModel.SelectSubGoodsSetDescCreateTime(nil, 6, 0); ok {
@@ -60,6 +69,8 @@ func GetSubGoodsDetail(subGoodsId int) Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
 	type name struct {
 		DbModel.Goods
+		Price    float32          `json:"price"`
+		Sell     int              `json:"sell"`
 		SubGoods DbModel.SubGoods `json:"sub_goods"`
 	}
 	var retData name
@@ -67,6 +78,8 @@ func GetSubGoodsDetail(subGoodsId int) Result.Result {
 		if ok2, goods := DbModel.SelectGoodsByGoodsId(subGoods.GoodsId); ok2 && goods != nil && subGoods != nil {
 			retData.Goods = *goods
 			retData.SubGoods = *subGoods
+			retData.Price = Goods.GetLeastPrice(goods.Id)
+			retData.Sell = Goods.GetGoodsStoke(goods.Id)
 			r.Code = Result.Ok
 			r.Data = retData
 		}

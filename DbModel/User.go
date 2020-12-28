@@ -3,17 +3,16 @@ package DbModel
 import (
 	"NFUShop/Utils"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"time"
 )
 
 type User struct {
-	Id         int        `json:"id" gorm:"column:id;primary_key"`
-	PassWord   string     `json:"-" gorm:"column:pass_word"`
-	Phone      string     `json:"phone" gorm:"column:phone"`
-	Avatar     string     `json:"avatar" gorm:"column:avatar"`
-	NickName   string     `json:"nick_name" gorm:"column:nick_name"`
-	CreateTime *time.Time `json:"create_time" gorm:"column:create_time" sql:"-"`
-	UpdateTime *time.Time `json:"update_time" gorm:"column:update_time" sql:"-"`
+	Id         int         `json:"id" gorm:"column:id;primary_key"`
+	PassWord   string      `json:"-" gorm:"column:pass_word"`
+	Phone      string      `json:"phone" gorm:"column:phone"`
+	Avatar     string      `json:"avatar" gorm:"column:avatar"`
+	NickName   string      `json:"nick_name" gorm:"column:nick_name"`
+	CreateTime *Utils.Time `json:"create_time" gorm:"column:create_time" sql:"-"`
+	UpdateTime *Utils.Time `json:"update_time" gorm:"column:update_time" sql:"-"`
 }
 
 func (u *User) TableName() string {

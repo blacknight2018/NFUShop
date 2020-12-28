@@ -5,6 +5,11 @@ import (
 	"NFUShop/Result"
 )
 
+/**
+ * @Description:获取商品下所有子商品出售的数量总和
+ * @param goodsId
+ * @return int
+ */
 func GetGoodsSell(goodsId int) int {
 	var ret int
 	if ok, data := DbModel.SelectSubGoodsSetByGoodsId(goodsId); ok {
@@ -15,6 +20,11 @@ func GetGoodsSell(goodsId int) int {
 	return ret
 }
 
+/**
+ * @Description: 获取商品下所有子商品库存的数量总和
+ * @param goodsId
+ * @return int
+ */
 func GetGoodsStoke(goodsId int) int {
 	var ret int
 	if ok, data := DbModel.SelectSubGoodsSetByGoodsId(goodsId); ok {
@@ -25,6 +35,11 @@ func GetGoodsStoke(goodsId int) int {
 	return ret
 }
 
+/**
+ * @Description:获取改商品下的子商品最低价格
+ * @param goodsId
+ * @return float32
+ */
 func GetLeastPrice(goodsId int) float32 {
 	var ret float32
 	if ok, data := DbModel.SelectSubGoodsSetDescPriceByGoodsId(goodsId, 1, 0); ok {
@@ -34,7 +49,7 @@ func GetLeastPrice(goodsId int) float32 {
 }
 
 /**
- * @Description: 搜索
+ * @Description: 通过商品标题模糊搜索商品
  * @param title
  * @param limit
  * @param offset

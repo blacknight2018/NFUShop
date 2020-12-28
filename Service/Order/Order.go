@@ -94,7 +94,7 @@ func CreateOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 }
 
 /**
- * @Description:查询订单
+ * @Description:查询订单需要支付的价格
  * @param userId
  * @param addressId
  * @param cartIdSet

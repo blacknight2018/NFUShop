@@ -30,7 +30,7 @@ func GetUserAddress(userId int, addressId int) Result.Result {
  * @param offset
  * @return Result.Result
  */
-func GetUserAddressSet(userId int, limit int, offset int) Result.Result {
+func GetUserAddressList(userId int, limit int, offset int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow
 

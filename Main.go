@@ -64,7 +64,7 @@ func main() {
 			context.Writer.Write([]byte(Address.GetUserAddress(userId, addressId).Get()))
 			return
 		}
-		context.Writer.Write([]byte(Address.GetUserAddressSet(userId, limit, offset).Get()))
+		context.Writer.Write([]byte(Address.GetUserAddressList(userId, limit, offset).Get()))
 	})
 	address.POST("", func(context *gin.Context) {
 		userId := Utils.ContextGetInt(context, "user_id")
@@ -107,7 +107,7 @@ func main() {
 		limit := Utils.ContextQueryInt(context, "limit")
 		offset := Utils.ContextQueryInt(context, "offset")
 		fmt.Println(limit, offset)
-		context.Writer.Write([]byte(Cart.GetUserCartSet(userId, limit, offset).Get()))
+		context.Writer.Write([]byte(Cart.GetUserCartList(userId, limit, offset).Get()))
 	})
 	cart.DELETE("", func(context *gin.Context) {
 		userId := Utils.ContextGetInt(context, "user_id")
