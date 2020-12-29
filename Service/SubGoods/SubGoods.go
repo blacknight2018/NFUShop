@@ -79,7 +79,7 @@ func GetSubGoodsDetail(subGoodsId int) Result.Result {
 			retData.Goods = *goods
 			retData.SubGoods = *subGoods
 			retData.Price = Goods.GetLeastPrice(goods.Id)
-			retData.Sell = Goods.GetGoodsStoke(goods.Id)
+			retData.Sell = Goods.GetGoodsSell(goods.Id)
 			r.Code = Result.Ok
 			r.Data = retData
 		}

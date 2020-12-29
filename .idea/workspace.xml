@@ -19,12 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="修正了部分代码">
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="路由抽出单独的函数">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/User/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/User/User.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -577,7 +574,8 @@
     <MESSAGE value="添加了go mod 移除了ny2包" />
     <MESSAGE value="添加了搜索结果带最低价格" />
     <MESSAGE value="修正了部分代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="修正了部分代码" />
+    <MESSAGE value="路由抽出单独的函数" />
+    <option name="LAST_COMMIT_MESSAGE" value="路由抽出单独的函数" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
