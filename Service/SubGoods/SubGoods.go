@@ -4,6 +4,7 @@ import (
 	"NFUShop/DbModel"
 	"NFUShop/Result"
 	"NFUShop/Service/Goods"
+	"NFUShop/Utils"
 )
 
 /**
@@ -12,7 +13,7 @@ import (
  */
 func GetHotSubGoods() Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
-	if ok, data := DbModel.SelectSubGoodsSetDescSell(nil, 6, 0); ok {
+	if ok, data := DbModel.SelectSubGoodsSetDescSell(nil, Utils.Int2IntPtr(6), Utils.Int2IntPtr(0)); ok {
 		r.Code = Result.Ok
 
 		type name struct {
@@ -40,7 +41,7 @@ func GetHotSubGoods() Result.Result {
  */
 func GetNewestSubGoods() Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
-	if ok, data := DbModel.SelectSubGoodsSetDescCreateTime(nil, 6, 0); ok {
+	if ok, data := DbModel.SelectSubGoodsSetDescCreateTime(nil, Utils.Int2IntPtr(6), Utils.Int2IntPtr(0)); ok {
 		r.Code = Result.Ok
 		type name struct {
 			Title string `json:"title"`

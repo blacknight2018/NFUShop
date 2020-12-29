@@ -46,40 +46,54 @@ func SelectSubGoodsSetByGoodsId(goodsId int) (bool, []SubGoods) {
 	condition["goods_id"] = goodsId
 	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, nil, nil, Utils.EmptyString), subGoodsSet
 }
-func SelectSubGoodsSet(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
+func SelectSubGoodsSet(condition map[string]interface{}, limit *int, offset *int) (bool, []SubGoods) {
 	var subGoodsSet []SubGoods
-	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, &limit, &offset, Utils.EmptyString), subGoodsSet
+	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, limit, offset, Utils.EmptyString), subGoodsSet
 }
 
-func SelectSubGoodsSetDescCreateTime(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
+func SelectSubGoodsSetDescCreateTime(condition map[string]interface{}, limit *int, offset *int) (bool, []SubGoods) {
 	db := Config.GetOneDB()
 	if db == nil {
 		return false, nil
 	}
 	defer db.Close()
 	var subGoodsSet []SubGoods
-	err := db.Table("sub_goods").Group("goods_id").Order("create_time desc").Limit(limit).Offset(offset).Find(&subGoodsSet).Error
+	db = db.Table("sub_goods").Group("goods_id").Order("create_time desc")
+	if limit != nil {
+		db = db.Limit(*limit)
+	}
+	if offset != nil {
+		db = db.Offset(*offset)
+	}
+	err := db.Find(&subGoodsSet).Error
 	if err == nil {
 		return true, subGoodsSet
 	}
 	return false, nil
 }
 
-func SelectSubGoodsSetDescSell(condition map[string]interface{}, limit int, offset int) (bool, []SubGoods) {
+func SelectSubGoodsSetDescSell(condition map[string]interface{}, limit *int, offset *int) (bool, []SubGoods) {
 	db := Config.GetOneDB()
 	if db == nil {
 		return false, nil
 	}
 	defer db.Close()
 	var subGoodsSet []SubGoods
-	err := db.Table("sub_goods").Group("goods_id").Order("sell desc").Limit(limit).Offset(offset).Find(&subGoodsSet).Error
+	db = db.Table("sub_goods").Group("goods_id").Order("sell desc")
+	if limit != nil {
+		db = db.Limit(*limit)
+	}
+	if offset != nil {
+		db = db.Offset(*offset)
+	}
+	err := db.Find(&subGoodsSet).Error
 	if err == nil {
 		return true, subGoodsSet
 	}
 	return false, nil
 }
 
-func SelectSubGoodsSetDescPriceByGoodsId(goodsId int, limit int, offset int) (bool, []SubGoods) {
+func SelectSubGoodsSetDescPriceByGoodsId(goodsId int, limit *int, offset *int) (bool, []SubGoods) {
 	db := Config.GetOneDB()
 	if db == nil {
 		return false, nil
@@ -94,9 +108,7 @@ func SelectSubGoodsSetDescPriceByGoodsId(goodsId int, limit int, offset int) (bo
 func SelectSubGoodsByTemplateIndex(goodsId int, templateIndex string) (bool, *SubGoods) {
 	var subGoodsSet []SubGoods
 	condition := map[string]interface{}{"goods_id": goodsId, "template": templateIndex}
-	limit := 1
-	offset := 0
-	SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, &limit, &offset, Utils.EmptyString)
+	SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, Utils.Int2IntPtr(1), Utils.Int2IntPtr(0), Utils.EmptyString)
 	if len(subGoodsSet) == 0 {
 		return false, nil
 	}

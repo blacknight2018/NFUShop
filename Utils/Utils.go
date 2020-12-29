@@ -121,3 +121,7 @@ func ContextQueryInt(context *gin.Context, key string) int {
 	ret, _ := strconv.Atoi(data)
 	return ret
 }
+
+func Int2IntPtr(v int) *int {
+	return &v
+}

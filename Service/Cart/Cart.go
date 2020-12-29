@@ -14,7 +14,7 @@ import (
  */
 func GetUserCartList(userId int, limit int, offset int) Result.Result {
 	r := Result.Result{Code: Result.UnKnow}
-	if ok, data := DbModel.SelectCartSetByUserId(userId, limit, offset); ok {
+	if ok, data := DbModel.SelectCartSetByUserId(userId, &limit, &offset); ok {
 		type name struct {
 			DbModel.Cart
 			Title    string           `json:"title"`

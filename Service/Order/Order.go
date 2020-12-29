@@ -168,7 +168,7 @@ func GetOrder(userId int, status int, limit int, offset int) Result.Result {
 		Img []string `json:"img"`
 	}
 	var retData []name
-	if ok, data := DbModel.SelectOrderSet(condition, limit, offset, "id desc"); ok {
+	if ok, data := DbModel.SelectOrderSet(condition, &limit, &offset, "id desc"); ok {
 		for _, order := range data {
 			var tmp name
 			var img []string

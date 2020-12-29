@@ -34,7 +34,7 @@ func GetUserAddressList(userId int, limit int, offset int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow
 
-	if ok, data := DbModel.SelectUserAddressSet(userId, limit, offset); ok {
+	if ok, data := DbModel.SelectUserAddressSet(userId, &limit, &offset); ok {
 		ret.Code = Result.Ok
 		ret.Data = data
 	}

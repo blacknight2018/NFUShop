@@ -3,6 +3,7 @@ package Goods
 import (
 	"NFUShop/DbModel"
 	"NFUShop/Result"
+	"NFUShop/Utils"
 )
 
 /**
@@ -42,7 +43,7 @@ func GetGoodsStoke(goodsId int) int {
  */
 func GetLeastPrice(goodsId int) float32 {
 	var ret float32
-	if ok, data := DbModel.SelectSubGoodsSetDescPriceByGoodsId(goodsId, 1, 0); ok {
+	if ok, data := DbModel.SelectSubGoodsSetDescPriceByGoodsId(goodsId, Utils.Int2IntPtr(1), Utils.Int2IntPtr(0)); ok {
 		ret = data[0].Price
 	}
 	return ret
@@ -66,7 +67,7 @@ func SearchGoodsByTitle(title string, limit int, offset int) Result.Result {
 		SubGoods []int   `json:"sub_goods"`
 	}
 	var retData []name
-	if ok, data := DbModel.SelectGoodsSetLikeTitle(title, limit, offset); ok {
+	if ok, data := DbModel.SelectGoodsSetLikeTitle(title, &limit, &offset); ok {
 		var tmp name
 		for _, v := range data {
 			tmp.Goods = v

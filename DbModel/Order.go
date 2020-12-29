@@ -37,9 +37,9 @@ func SelectOrderByOrderId(orderId int) (bool, *Order) {
 	return SelectTableRecordById((&Order{}).TableName(), orderId, nil, &order), &order
 }
 
-func SelectOrderSet(condition map[string]interface{}, limit int, offset int, order string) (bool, []Order) {
+func SelectOrderSet(condition map[string]interface{}, limit *int, offset *int, order string) (bool, []Order) {
 	var orderSet []Order
-	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, &limit, &offset, order), orderSet
+	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, limit, offset, order), orderSet
 }
 
 func (o *Order) InsertOrderWithDB(db *gorm.DB) bool {

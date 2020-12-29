@@ -1,5 +1,7 @@
 package DbModel
 
+import "NFUShop/Utils"
+
 type Banner struct {
 	Id         int    `json:"id" gorm:"column:id"`
 	Img        string `json:"img" gorm:"column:img"`
@@ -20,4 +22,8 @@ func (c *Banner) Insert() bool {
 
 func (c *Banner) Delete() bool {
 	return DeleteDBObj(c)
+}
+func SelectBannerSet(condition map[string]interface{}, limit *int, offset *int) (bool, []Banner) {
+	var bannerSet []Banner
+	return SelectTableRecordSet((&Cart{}).TableName(), &bannerSet, condition, limit, offset, Utils.EmptyString), bannerSet
 }

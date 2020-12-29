@@ -31,7 +31,7 @@ func (a *Address) Delete() bool {
 	return DeleteDBObj(a)
 }
 
-func SelectUserAddressSet(userId int, limit int, offset int) (bool, []Address) {
+func SelectUserAddressSet(userId int, limit *int, offset *int) (bool, []Address) {
 	condition := map[string]interface{}{"user_id": userId}
 	return SelectAddressSet(condition, limit, offset, "create_time desc")
 }
@@ -41,7 +41,7 @@ func SelectAddressByAddressId(addressId int) (bool, *Address) {
 	return SelectTableRecordById("address", addressId, nil, &address), &address
 }
 
-func SelectAddressSet(condition map[string]interface{}, limit int, offset int, order string) (bool, []Address) {
+func SelectAddressSet(condition map[string]interface{}, limit *int, offset *int, order string) (bool, []Address) {
 	var addressSet []Address
-	return SelectTableRecordSet("address", &addressSet, condition, &limit, &offset, order), addressSet
+	return SelectTableRecordSet("address", &addressSet, condition, limit, offset, order), addressSet
 }

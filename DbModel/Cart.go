@@ -69,9 +69,9 @@ func SelectCartByCartId(cartId int) (bool, *Cart) {
  * @return bool
  * @return []Cart
  */
-func SelectCartSet(condition map[string]interface{}, limit int, offset int) (bool, []Cart) {
+func SelectCartSet(condition map[string]interface{}, limit *int, offset *int) (bool, []Cart) {
 	var cartSet []Cart
-	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, condition, &limit, &offset, Utils.EmptyString), cartSet
+	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, condition, limit, offset, Utils.EmptyString), cartSet
 }
 
 /**
@@ -82,9 +82,9 @@ func SelectCartSet(condition map[string]interface{}, limit int, offset int) (boo
  * @return bool
  * @return []Cart
  */
-func SelectCartSetByUserId(userId int, limit int, offset int) (bool, []Cart) {
+func SelectCartSetByUserId(userId int, limit *int, offset *int) (bool, []Cart) {
 	var cartSet []Cart
-	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, map[string]interface{}{"user_id": userId}, &limit, &offset, "create_time desc"), cartSet
+	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, map[string]interface{}{"user_id": userId}, limit, offset, "create_time desc"), cartSet
 }
 
 /**

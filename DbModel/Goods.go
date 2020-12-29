@@ -28,7 +28,7 @@ func (g *Goods) Insert() bool {
 	return InsertDBObj(g)
 }
 
-func SelectGoodsSetLikeTitle(title string, limit int, offset int) (bool, []Goods) {
+func SelectGoodsSetLikeTitle(title string, limit *int, offset *int) (bool, []Goods) {
 	var goodsSet []Goods
 
 	db := Config.GetOneDB()
@@ -36,7 +36,14 @@ func SelectGoodsSetLikeTitle(title string, limit int, offset int) (bool, []Goods
 		return false, nil
 	}
 	defer db.Close()
-	err := db.Where("title like ?", "%"+title+"%").Limit(limit).Offset(offset).Find(&goodsSet).Error
+	db = db.Where("title like ?", "%"+title+"%")
+	if limit != nil {
+		db = db.Limit(*limit)
+	}
+	if offset != nil {
+		db = db.Offset(*offset)
+	}
+	err := db.Find(&goodsSet).Error
 	return err == nil, goodsSet
 }
 
@@ -45,7 +52,7 @@ func SelectGoodsByGoodsId(goodsId int) (bool, *Goods) {
 	return SelectTableRecordById((&Goods{}).TableName(), goodsId, nil, &goods), &goods
 }
 
-func SelectGoodsSet(condition map[string]interface{}, limit int, offset int) (bool, []Goods) {
+func SelectGoodsSet(condition map[string]interface{}, limit *int, offset *int) (bool, []Goods) {
 	var goodsSet []Goods
-	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, &limit, &offset, Utils.EmptyString), goodsSet
+	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, limit, offset, Utils.EmptyString), goodsSet
 }

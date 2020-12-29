@@ -43,7 +43,7 @@ func SelectUserByUserId(userId int) (bool, *User) {
 	return SelectTableRecordById((&User{}).TableName(), userId, nil, &user), &user
 }
 
-func SelectUserSet(condition map[string]interface{}, limit int, offset int) (bool, []User) {
+func SelectUserSet(condition map[string]interface{}, limit *int, offset *int) (bool, []User) {
 	var userSet []User
-	return SelectTableRecordSet((&User{}).TableName(), &userSet, condition, &limit, &offset, Utils.EmptyString), userSet
+	return SelectTableRecordSet((&User{}).TableName(), &userSet, condition, limit, offset, Utils.EmptyString), userSet
 }
