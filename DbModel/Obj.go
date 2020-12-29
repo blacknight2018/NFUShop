@@ -28,6 +28,9 @@ func SelectTableRecordById(tableName string, id int, condition map[string]interf
 	case *Cart:
 		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
 		break
+	case *Banner:
+		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
+		break
 	}
 	return err == nil
 }
@@ -56,6 +59,9 @@ func InsertDBObj(in interface{}) bool {
 		err = db.Create(v).Error
 		break
 	case *SubGoods:
+		err = db.Create(v).Error
+		break
+	case *Banner:
 		err = db.Create(v).Error
 		break
 	}
@@ -88,6 +94,9 @@ func UpdateDBObj(in interface{}) bool {
 	case *Order:
 		db.Model(&Order{}).Where("id = ?", v.Id).Update(v)
 		break
+	case *Banner:
+		db.Model(&Order{}).Where("id = ?", v.Id).Update(v)
+		break
 	}
 	return err == nil
 }
@@ -104,6 +113,9 @@ func DeleteDBObj(in interface{}) bool {
 		err = db.Delete(v).Error
 		break
 	case *Address:
+		err = db.Delete(v).Error
+		break
+	case *Banner:
 		err = db.Delete(v).Error
 		break
 	}
@@ -140,6 +152,9 @@ func SelectTableRecordSet(tableName string, out interface{}, condition map[strin
 		err = dbCondition.Find(v).Error
 		break
 	case *[]Address:
+		err = dbCondition.Find(v).Error
+		break
+	case *[]Banner:
 		err = dbCondition.Find(v).Error
 		break
 	}

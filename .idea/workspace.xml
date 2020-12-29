@@ -19,9 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="路由抽出单独的函数">
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="修复一些问题">
+      <change afterPath="$PROJECT_DIR$/DbModel/Banner.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Obj.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Obj.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nfushop.sql" beforeDir="false" afterPath="$PROJECT_DIR$/nfushop.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -575,7 +577,8 @@
     <MESSAGE value="添加了搜索结果带最低价格" />
     <MESSAGE value="修正了部分代码" />
     <MESSAGE value="路由抽出单独的函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="路由抽出单独的函数" />
+    <MESSAGE value="修复一些问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复一些问题" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
