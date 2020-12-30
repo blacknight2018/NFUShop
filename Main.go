@@ -4,6 +4,7 @@ import (
 	"NFUShop/Config"
 	"NFUShop/Result"
 	"NFUShop/Service/Address"
+	"NFUShop/Service/Banner"
 	"NFUShop/Service/Cart"
 	"NFUShop/Service/Goods"
 	"NFUShop/Service/Order"
@@ -89,6 +90,17 @@ func getNewest(context *gin.Context) {
 	context.Writer.Write([]byte(SubGoods.GetNewestSubGoods().Get()))
 }
 
+func getBanner(context *gin.Context) {
+	context.Writer.Write([]byte(Banner.GetBannerList().Get()))
+}
+
+func updateBanner(context *gin.Context) {
+	bannerId := Utils.ContextQueryInt(context, "id")
+	img := context.Query("img")
+	subGoodsId := Utils.ContextQueryInt(context, "sub_goods_id")
+	fmt.Println(bannerId, img, subGoodsId)
+}
+
 func getCart(context *gin.Context) {
 	userId := Utils.ContextGetInt(context, "user_id")
 	limit := Utils.ContextQueryInt(context, "limit")
@@ -144,6 +156,7 @@ func main() {
 				context.Set("user_id", userId)
 			}
 		}
+		context.Writer.Header().Set("Content-Type", "application/json;charset=utf-8")
 		context.Next()
 	})
 	home := v1.Group("/home")
@@ -174,6 +187,10 @@ func main() {
 	home.GET("/hot", getHot)
 
 	home.GET("/newest", getNewest)
+
+	home.GET("/banner", getBanner)
+
+	home.POST("/banner", updateBanner)
 
 	cart.GET("", getCart)
 
