@@ -3,7 +3,7 @@ package DbModel
 import "NFUShop/Config"
 
 func SelectTableRecordById(tableName string, id int, condition map[string]interface{}, out interface{}) bool {
-	db := Config.GetOneDB()
+	db := Config.GetRandomSlaveDB()
 	if db == nil {
 		return false
 	}
@@ -123,7 +123,7 @@ func DeleteDBObj(in interface{}) bool {
 }
 
 func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, limit *int, offset *int, order string) bool {
-	db := Config.GetOneDB()
+	db := Config.GetRandomSlaveDB()
 	if db == nil {
 		return false
 	}

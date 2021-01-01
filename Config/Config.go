@@ -5,12 +5,15 @@ import (
 	"github.com/jinzhu/gorm"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"math/rand"
 )
 
 type conf struct {
-	DbConnect string `yaml:"db_connect"`
-	Port      int    `yaml:"port"`
-	SecretKey string `yaml:"secretKey"`
+	DbConnect string   `yaml:"db_connect"`
+	Port      int      `yaml:"port"`
+	SecretKey string   `yaml:"secretKey"`
+	WriteDb   string   `yaml:"write_db"`
+	ReadDb    []string `yaml:"read_db"`
 }
 
 var c conf
@@ -35,7 +38,19 @@ func GetJWTSecret() string {
 	return c.SecretKey
 }
 func GetOneDB() *gorm.DB {
-	db, err := gorm.Open("mysql", c.DbConnect)
+	db, err := gorm.Open("mysql", c.WriteDb)
+	if err != nil {
+		panic(err)
+	}
+	db.DB().SetConnMaxIdleTime(5)
+	db.DB().SetMaxOpenConns(10)
+	db.LogMode(true)
+	return db
+}
+
+func GetRandomSlaveDB() *gorm.DB {
+	choiceDbIdx := rand.Intn(len(c.ReadDb))
+	db, err := gorm.Open("mysql", c.ReadDb[choiceDbIdx])
 	if err != nil {
 		panic(err)
 	}

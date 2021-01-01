@@ -44,7 +44,9 @@ func GetGoodsStoke(goodsId int) int {
 func GetLeastPrice(goodsId int) float32 {
 	var ret float32
 	if ok, data := DbModel.SelectSubGoodsSetDescPriceByGoodsId(goodsId, Utils.Int2IntPtr(1), Utils.Int2IntPtr(0)); ok {
-		ret = data[0].Price
+		if len(data) > 0 {
+			ret = data[0].Price
+		}
 	}
 	return ret
 }

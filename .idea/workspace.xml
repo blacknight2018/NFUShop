@@ -19,12 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="改善了部分代码">
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="修复了Obj的Update问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Config.go" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Config/config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DbModel/Banner.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Banner.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DbModel/Obj.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Obj.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Banner/Banner.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Banner/Banner.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Goods/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Goods/Goods.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -555,7 +557,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加了数据库sql文件、文件配置添加了端口设置" />
     <MESSAGE value="添加了web服务端,补充进了sql文件" />
     <MESSAGE value="给model添加了集合查询" />
     <MESSAGE value="完善了model，添加了接口、测试" />
@@ -580,9 +581,22 @@
     <MESSAGE value="修复一些问题" />
     <MESSAGE value="添加了Banner" />
     <MESSAGE value="改善了部分代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="改善了部分代码" />
+    <MESSAGE value="修复了Obj的Update问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了Obj的Update问题" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="DlvErrorBreakpoint" />
+      </default-breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GoApplicationRunConfiguration">
+        <watch expression="c" language="go" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

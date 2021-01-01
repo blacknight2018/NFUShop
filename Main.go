@@ -94,13 +94,6 @@ func getBanner(context *gin.Context) {
 	context.Writer.Write([]byte(Banner.GetBannerList().Get()))
 }
 
-func updateBanner(context *gin.Context) {
-	bannerId := Utils.ContextQueryInt(context, "id")
-	img := context.Query("img")
-	subGoodsId := Utils.ContextQueryInt(context, "sub_goods_id")
-	fmt.Println(bannerId, img, subGoodsId)
-}
-
 func getCart(context *gin.Context) {
 	userId := Utils.ContextGetInt(context, "user_id")
 	limit := Utils.ContextQueryInt(context, "limit")
@@ -148,6 +141,7 @@ func submitOrder(context *gin.Context) {
 }
 func main() {
 	Config.GetConf()
+	Config.GetRandomSlaveDB()
 	r := gin.Default()
 	v1 := r.Group("/v1")
 	v1.Use(func(context *gin.Context) {
@@ -189,8 +183,6 @@ func main() {
 	home.GET("/newest", getNewest)
 
 	home.GET("/banner", getBanner)
-
-	home.POST("/banner", updateBanner)
 
 	cart.GET("", getCart)
 

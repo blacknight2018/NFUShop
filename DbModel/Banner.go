@@ -3,9 +3,11 @@ package DbModel
 import "NFUShop/Utils"
 
 type Banner struct {
-	Id         int    `json:"id" gorm:"column:id"`
-	Img        string `json:"img" gorm:"column:img"`
-	SubGoodsId int    `json:"sub_goods_id" gorm:"column:sub_goods_id"`
+	Id         int         `json:"id" gorm:"column:id"`
+	Img        string      `json:"img" gorm:"column:img"`
+	SubGoodsId int         `json:"sub_goods_id" gorm:"column:sub_goods_id"`
+	CreateTime *Utils.Time `json:"create_time" gorm:"column:create_time" sql:"-"`
+	UpdateTime *Utils.Time `json:"update_time" gorm:"column:update_time" sql:"-"`
 }
 
 func (c *Banner) TableName() string {
