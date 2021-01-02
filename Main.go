@@ -82,6 +82,14 @@ func getUser(context *gin.Context) {
 	context.Writer.Write([]byte(User.GetUser(userId).Get()))
 }
 
+func validToken(context *gin.Context) {
+	var ret Result.Result
+	ret.Code = Result.Ok
+	userId := Utils.ContextGetInt(context, "user_id")
+	ret.Data = userId
+	context.Writer.Write([]byte(ret.Get()))
+}
+
 func getHot(context *gin.Context) {
 	context.Writer.Write([]byte(SubGoods.GetHotSubGoods().Get()))
 }
@@ -177,6 +185,8 @@ func main() {
 	goods.GET("/search", searchGoods)
 
 	user.GET("", getUser)
+
+	user.GET("/valid", validToken)
 
 	home.GET("/hot", getHot)
 

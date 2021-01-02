@@ -19,14 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="修复了Obj的Update问题">
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="修正了数据库字段的一些定义，添加了一写多读数据库的支持">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/Config.go" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Config/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/Banner.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Banner.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/Obj.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Obj.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Goods_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Goods_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Goods/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Goods/Goods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SubGoods_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/SubGoods_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/Utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Utils_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +60,7 @@
     <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../pkg/mod/github.com/swaggo/swag@v1.5.1/example/celler" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -72,6 +71,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\code\go\src\NFUShop" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\code\go\src\NFUShop\Service\User" />
       <recent name="C:\Users\code\go\src\NFUShop\Service\SubGoods" />
@@ -486,7 +488,7 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGenerateJWT in NFUShop" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGenerateJWT in NFUShop (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="NFUShop" />
       <working_directory value="$PROJECT_DIR$" />
       <framework value="gotest" />
@@ -533,10 +535,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build NFUShop" />
+        <item itemvalue="Go Test.TestGenerateJWT in NFUShop (1)" />
         <item itemvalue="Go Test.TestSelectGoodsSetDescSell in NFUShop" />
         <item itemvalue="Go Test.TestSelectGoodsLikeTitle in NFUShop" />
         <item itemvalue="Go Test.TestGenerateJWT in NFUShop/Utils" />
-        <item itemvalue="Go Test.TestGenerateJWT in NFUShop" />
       </list>
     </recent_temporary>
   </component>
@@ -557,7 +559,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加了web服务端,补充进了sql文件" />
     <MESSAGE value="给model添加了集合查询" />
     <MESSAGE value="完善了model，添加了接口、测试" />
     <MESSAGE value="添加了JWT函数" />
@@ -582,7 +583,8 @@
     <MESSAGE value="添加了Banner" />
     <MESSAGE value="改善了部分代码" />
     <MESSAGE value="修复了Obj的Update问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了Obj的Update问题" />
+    <MESSAGE value="修正了数据库字段的一些定义，添加了一写多读数据库的支持" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正了数据库字段的一些定义，添加了一写多读数据库的支持" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
