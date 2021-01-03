@@ -85,3 +85,20 @@ func RemoveAddress(userId int, addressId int) Result.Result {
 	}
 	return ret
 }
+
+func UpdateUserAddress(userId int, addressId int, nickName string, phone string, sex string, detail string) Result.Result {
+	var ret Result.Result
+	ret.Code = Result.UnKnow
+
+	if ok, data := DbModel.SelectAddressByAddressId(addressId); ok {
+		data.NickName = nickName
+		data.Phone = phone
+		data.Sex = sex
+		data.Detail = detail
+		if data.Update() {
+			ret.Code = Result.Ok
+		}
+	}
+
+	return ret
+}

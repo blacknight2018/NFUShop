@@ -1,7 +1,7 @@
 #db_connect: root:WOaini1314@(main.bybyte.cn:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
+token_time: 120
 write_db: root:WOaini1314@(main.bybyte.cn:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
 read_db:
-  - root:123456@(127.0.0.1:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
-  - root:123456@(127.0.0.1:3307)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
-secretKey: "Fuck"
+  - root:WOaini1314@(main.bybyte.cn:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
+secret_key: "Fuck"
 port: 7777

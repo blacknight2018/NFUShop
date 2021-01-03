@@ -75,7 +75,7 @@ type Claims struct {
 func GenerateJWT(obj interface{}) string {
 	claims := Claims{
 		obj,
-		jwt.StandardClaims{ExpiresAt: time.Now().Add(10 * time.Second).Unix()},
+		jwt.StandardClaims{ExpiresAt: time.Now().Add(time.Duration(Config.GetTokenValidTime()) * time.Second).Unix()},
 	}
 	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	token, _ := tokenClaims.SignedString([]byte(Config.GetJWTSecret()))

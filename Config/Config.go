@@ -11,9 +11,10 @@ import (
 type conf struct {
 	DbConnect string   `yaml:"db_connect"`
 	Port      int      `yaml:"port"`
-	SecretKey string   `yaml:"secretKey"`
+	SecretKey string   `yaml:"secret_key"`
 	WriteDb   string   `yaml:"write_db"`
 	ReadDb    []string `yaml:"read_db"`
+	TokenTime int64    `yaml:"token_time"`
 }
 
 var c conf
@@ -58,4 +59,8 @@ func GetRandomSlaveDB() *gorm.DB {
 	db.DB().SetMaxOpenConns(10)
 	db.LogMode(true)
 	return db
+}
+
+func GetTokenValidTime() int64 {
+	return c.TokenTime
 }

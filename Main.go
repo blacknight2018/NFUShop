@@ -59,6 +59,16 @@ func addAddress(context *gin.Context) {
 	context.Writer.Write([]byte(Address.AddUserAddress(userId, name, phone, sex, detail).Get()))
 }
 
+func putAddress(context *gin.Context) {
+	userId := Utils.ContextGetInt(context, "user_id")
+	addressId := Utils.StrToInt(context.PostForm("address_id"))
+	phone := context.PostForm("phone")
+	name := context.PostForm("name")
+	sex := context.PostForm("sex")
+	detail := context.PostForm("detail")
+	context.Writer.Write([]byte(Address.UpdateUserAddress(userId, addressId, name, phone, sex, detail).Get()))
+}
+
 func getGoods(context *gin.Context) {
 	subGoodsId := Utils.StrToInt(context.Query("sub_goods_id"))
 	context.Writer.Write([]byte(SubGoods.GetSubGoodsDetail(subGoodsId).Get()))
@@ -123,6 +133,12 @@ func addCart(context *gin.Context) {
 	context.Writer.Write([]byte(Cart.AddSubGoodsToCart(userId, subGoodsId).Get()))
 }
 
+func updateCart(context *gin.Context) {
+	cartId := Utils.StrToInt(context.PostForm("cart_id"))
+	amount := Utils.StrToInt(context.PostForm("amount"))
+	context.Writer.Write([]byte(Cart.UpdateCartAmount(cartId, amount).Get()))
+}
+
 func getOrder(context *gin.Context) {
 	userId := Utils.ContextGetInt(context, "user_id")
 	status := Utils.StrToInt(context.Query("status"))
@@ -178,6 +194,8 @@ func main() {
 
 	address.POST("", addAddress)
 
+	address.PUT("", putAddress)
+
 	goods.GET("", getGoods)
 
 	goods.GET("/query", queryGoods)
@@ -199,6 +217,8 @@ func main() {
 	cart.DELETE("", deleteCart)
 
 	cart.POST("", addCart)
+
+	cart.PUT("", updateCart)
 
 	order.GET("", getOrder)
 

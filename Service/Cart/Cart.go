@@ -80,3 +80,16 @@ func RemoveCart(userId int, cartId int) Result.Result {
 	}
 	return r
 }
+
+func UpdateCartAmount(cartId int, amount int) Result.Result {
+	var ret Result.Result
+	ret.Code = Result.UnKnow
+
+	if ok, data := DbModel.SelectCartByCartId(cartId); ok {
+		data.Amount = amount
+		if data.Update() {
+			ret.Code = Result.Ok
+		}
+	}
+	return ret
+}
