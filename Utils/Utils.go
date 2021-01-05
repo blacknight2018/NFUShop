@@ -126,3 +126,7 @@ func ContextQueryInt(context *gin.Context, key string) int {
 func Int2IntPtr(v int) *int {
 	return &v
 }
+
+func Bool2BoolPtr(v bool) *bool {
+	return &v
+}

@@ -21,11 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="添加了购物车物品数量修改，收货人地址保存">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/Config.go" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Config/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Goods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/SubGoods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Goods_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Goods_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Address/Address.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Address/Address.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Cart/Cart.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Cart/Cart.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Goods/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Goods/Goods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Utils/Utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Utils.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -500,15 +500,15 @@
       <pattern value="^\QTestGenerateJWT\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGenerateJWT in NFUShop/Utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSelectGoodsLikeTitle in NFUShop (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="NFUShop" />
-      <working_directory value="$PROJECT_DIR$/Utils" />
+      <working_directory value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="NFUShop/Utils" />
+      <package value="NFUShop" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestGenerateJWT\E$" />
+      <pattern value="^\QTestSelectGoodsLikeTitle\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestSelectGoodsLikeTitle in NFUShop" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -536,10 +536,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build NFUShop" />
+        <item itemvalue="Go Test.TestSelectGoodsLikeTitle in NFUShop (1)" />
         <item itemvalue="Go Test.TestGenerateJWT in NFUShop (1)" />
         <item itemvalue="Go Test.TestSelectGoodsSetDescSell in NFUShop" />
         <item itemvalue="Go Test.TestSelectGoodsLikeTitle in NFUShop" />
-        <item itemvalue="Go Test.TestGenerateJWT in NFUShop/Utils" />
       </list>
     </recent_temporary>
   </component>
@@ -592,6 +592,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/Goods_test.go</url>
+          <line>12</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="DlvErrorBreakpoint" />
       </default-breakpoints>

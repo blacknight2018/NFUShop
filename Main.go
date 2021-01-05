@@ -84,7 +84,22 @@ func searchGoods(context *gin.Context) {
 	keyWord := context.Query("key")
 	limit := Utils.ContextQueryInt(context, "limit")
 	offset := Utils.ContextQueryInt(context, "offset")
-	context.Writer.Write([]byte(Goods.SearchGoodsByTitle(keyWord, limit, offset).Get()))
+
+	var descPrice *bool
+	var descCreateTime *bool
+	if context.Query("price") == "desc" {
+		descPrice = Utils.Bool2BoolPtr(true)
+	} else {
+		descPrice = Utils.Bool2BoolPtr(false)
+	}
+
+	if context.Query("create_time") == "desc" {
+		descCreateTime = Utils.Bool2BoolPtr(true)
+	} else {
+		descCreateTime = Utils.Bool2BoolPtr(false)
+	}
+
+	context.Writer.Write([]byte(Goods.SearchGoodsByTitle(keyWord, limit, offset, descCreateTime, descPrice).Get()))
 }
 
 func getUser(context *gin.Context) {

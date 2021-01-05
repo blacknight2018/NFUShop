@@ -100,7 +100,7 @@ func SelectSubGoodsSetDescPriceByGoodsId(goodsId int, limit *int, offset *int) (
 	}
 	defer db.Close()
 	condition := make(map[string]interface{})
-	condition["id"] = goodsId
+	condition["goods_id"] = goodsId
 	return SelectSubGoodsSet(condition, limit, offset)
 
 }

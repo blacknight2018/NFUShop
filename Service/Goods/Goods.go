@@ -56,9 +56,11 @@ func GetLeastPrice(goodsId int) float32 {
  * @param title
  * @param limit
  * @param offset
+ * @param descCreateTime
+ * @param descPrice
  * @return Result.Result
  */
-func SearchGoodsByTitle(title string, limit int, offset int) Result.Result {
+func SearchGoodsByTitle(title string, limit int, offset int, descCreateTime *bool, descPrice *bool) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow
 	type name struct {
@@ -69,7 +71,7 @@ func SearchGoodsByTitle(title string, limit int, offset int) Result.Result {
 		SubGoods []int   `json:"sub_goods"`
 	}
 	var retData []name
-	if ok, data := DbModel.SelectGoodsSetLikeTitle(title, &limit, &offset); ok {
+	if ok, data := DbModel.SelectGoodsSetLikeTitle(title, &limit, &offset, descCreateTime, descPrice); ok {
 		var tmp name
 		for _, v := range data {
 			tmp.Goods = v

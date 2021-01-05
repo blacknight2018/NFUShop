@@ -10,7 +10,7 @@ import (
 
 func TestSelectGoodsLikeTitle(t *testing.T) {
 	Config.GetConf()
-	fmt.Println(DbModel.SelectGoodsSetLikeTitle("裤子", Utils.Int2IntPtr(5), Utils.Int2IntPtr(0)))
+	fmt.Println(DbModel.SelectGoodsSetLikeTitle("1", Utils.Int2IntPtr(5), Utils.Int2IntPtr(0), nil, Utils.Bool2BoolPtr(false)))
 }
 
 func TestSelectGoodsSetDescSell(t *testing.T) {

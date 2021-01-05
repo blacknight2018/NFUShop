@@ -3,6 +3,7 @@ package DbModel
 import (
 	"NFUShop/Config"
 	"NFUShop/Utils"
+	"strings"
 )
 
 type Goods struct {
@@ -28,7 +29,7 @@ func (g *Goods) Insert() bool {
 	return InsertDBObj(g)
 }
 
-func SelectGoodsSetLikeTitle(title string, limit *int, offset *int) (bool, []Goods) {
+func SelectGoodsSetLikeTitle(title string, limit *int, offset *int, descCreateTime *bool, descPrice *bool) (bool, []Goods) {
 	var goodsSet []Goods
 
 	db := Config.GetOneDB()
@@ -36,13 +37,31 @@ func SelectGoodsSetLikeTitle(title string, limit *int, offset *int) (bool, []Goo
 		return false, nil
 	}
 	defer db.Close()
-	db = db.Where("title like ?", "%"+title+"%")
+	//select goods.* from goods left join sub_goods  on goods.id = sub_goods.goods_id group by goods.id having goods.title like  '%1%' ;
+	rawSql := `select goods.* from goods left join sub_goods  on goods.id = sub_goods.goods_id group by goods.id having goods.title like  '%xxx%'`
+	//db = db.Where("title like ?", "%"+title+"%")
+	rawSql = strings.ReplaceAll(rawSql, "xxx", title)
 	if limit != nil {
 		db = db.Limit(*limit)
 	}
 	if offset != nil {
 		db = db.Offset(*offset)
 	}
+	if descPrice != nil {
+		if *descPrice {
+			db = db.Order("price desc")
+		} else {
+			db = db.Order("price asc")
+		}
+	} else if descCreateTime != nil {
+		if *descCreateTime {
+			db = db.Order("create_time desc")
+		} else {
+			db = db.Order("create_time asc")
+		}
+
+	}
+	db = db.Raw(rawSql).Scan(&goodsSet)
 	err := db.Find(&goodsSet).Error
 	return err == nil, goodsSet
 }
