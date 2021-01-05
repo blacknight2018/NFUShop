@@ -19,14 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="添加了购物车物品数量修改，收货人地址保存">
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="搜索接口添加了时间和价格筛选">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Goods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/SubGoods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Goods_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Goods_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Goods/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Goods/Goods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils/Utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Order/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Order/Order.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -560,7 +555,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加了JWT函数" />
     <MESSAGE value="接口返回添加了msg，添加了注册接口" />
     <MESSAGE value="完善部分代码" />
     <MESSAGE value="给user添加了avatar字段" />
@@ -585,7 +579,8 @@
     <MESSAGE value="修正了数据库字段的一些定义，添加了一写多读数据库的支持" />
     <MESSAGE value="添加了登录验证,修正了部分代码" />
     <MESSAGE value="添加了购物车物品数量修改，收货人地址保存" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了购物车物品数量修改，收货人地址保存" />
+    <MESSAGE value="搜索接口添加了时间和价格筛选" />
+    <option name="LAST_COMMIT_MESSAGE" value="搜索接口添加了时间和价格筛选" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -597,6 +592,11 @@
           <url>file://$PROJECT_DIR$/Goods_test.go</url>
           <line>12</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/Service/Order/Order.go</url>
+          <line>51</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

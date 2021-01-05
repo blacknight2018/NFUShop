@@ -53,7 +53,7 @@ func CreateOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 					subGoods.Stoke = &tmp
 					subGoods.Sell += amountSet[idx]
 					totalPrice += float32(amountSet[idx]) * subGoods.Price
-					if false == subGoods.UpdateWithDB(trans) {
+					if tmp < 0 || false == subGoods.UpdateWithDB(trans) {
 						trans.Rollback()
 						ret.Code = Result.StokeNotEnough
 						return ret
