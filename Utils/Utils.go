@@ -46,11 +46,12 @@ func GetJSONIntArray(jsonString string) []int {
 	return ret
 }
 
-func StringArrayToJSON(strArray []string) string {
-	if bytes, err := json.Marshal(strArray); err == nil {
-		return string(bytes)
+func Any2JSON(in interface{}) string {
+	var ret string
+	if bytes, err := json.Marshal(in); err == nil {
+		ret = string(bytes)
 	}
-	return EmptyString
+	return ret
 }
 
 func StrToInt(str string) int {

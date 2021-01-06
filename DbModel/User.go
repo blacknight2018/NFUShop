@@ -11,6 +11,7 @@ type User struct {
 	Phone      string      `json:"phone" gorm:"column:phone"`
 	Avatar     string      `json:"avatar" gorm:"column:avatar"`
 	NickName   string      `json:"nick_name" gorm:"column:nick_name"`
+	Money      float32     `json:"money" gorm:"column:money"`
 	CreateTime *Utils.Time `json:"create_time" gorm:"column:create_time" sql:"-"`
 	UpdateTime *Utils.Time `json:"update_time" gorm:"column:update_time" sql:"-"`
 }

@@ -4,6 +4,7 @@ import (
 	"NFUShop/Config"
 	"NFUShop/DbModel"
 	"NFUShop/Result"
+	"NFUShop/Utils"
 	"encoding/json"
 )
 
@@ -47,12 +48,14 @@ func CreateOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 
 	if ok, address := DbModel.SelectAddressByAddressId(addressId); ok {
 		if tx != nil {
+			var amount []int
 			for idx, v := range subGoodsIdSet {
 				if ok2, subGoods := DbModel.SelectSubGoodsBySubGoodsId(v); ok2 {
 					tmp := *subGoods.Stoke - amountSet[idx]
 					subGoods.Stoke = &tmp
 					subGoods.Sell += amountSet[idx]
 					totalPrice += float32(amountSet[idx]) * subGoods.Price
+					amount = append(amount, amountSet[idx])
 					if tmp < 0 || false == subGoods.UpdateWithDB(trans) {
 						trans.Rollback()
 						ret.Code = Result.StokeNotEnough
@@ -79,7 +82,7 @@ func CreateOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 			order.SubGoods = subGoodsIdJson
 			order.TotalPrice = totalPrice
 			order.Status = UnPay
-
+			order.Amount = Utils.Any2JSON(amount)
 			if order.InsertOrderWithDB(trans) {
 				if nil == trans.Commit().Error {
 					return Result.Result{Code: Result.Ok}

@@ -19,9 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="搜索接口添加了时间和价格筛选">
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="添加了创建订单时判断库存数量">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/User.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Service/Order/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Order/Order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/Utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nfushop.sql" beforeDir="false" afterPath="$PROJECT_DIR$/nfushop.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -555,7 +559,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="接口返回添加了msg，添加了注册接口" />
     <MESSAGE value="完善部分代码" />
     <MESSAGE value="给user添加了avatar字段" />
     <MESSAGE value="给user添加了nick_name字段" />
@@ -580,7 +583,8 @@
     <MESSAGE value="添加了登录验证,修正了部分代码" />
     <MESSAGE value="添加了购物车物品数量修改，收货人地址保存" />
     <MESSAGE value="搜索接口添加了时间和价格筛选" />
-    <option name="LAST_COMMIT_MESSAGE" value="搜索接口添加了时间和价格筛选" />
+    <MESSAGE value="添加了创建订单时判断库存数量" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了创建订单时判断库存数量" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -592,11 +596,6 @@
           <url>file://$PROJECT_DIR$/Goods_test.go</url>
           <line>12</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/Service/Order/Order.go</url>
-          <line>51</line>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
