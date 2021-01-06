@@ -16,6 +16,7 @@ type conf struct {
 	ReadDb    []string `yaml:"read_db"`
 	TokenTime int64    `yaml:"token_time"`
 	OrderTime int      `yaml:"order_time"`
+	ImgServer string   `yaml:"img_server"`
 }
 
 var c conf
@@ -68,4 +69,8 @@ func GetTokenValidTime() int64 {
 
 func GetOrderTime() int {
 	return c.OrderTime
+}
+
+func GetImgServer() string {
+	return c.ImgServer
 }

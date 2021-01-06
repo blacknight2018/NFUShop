@@ -3,6 +3,8 @@ package User
 import (
 	"NFUShop/DbModel"
 	"NFUShop/Result"
+	"NFUShop/Utils"
+	"encoding/base64"
 )
 
 /**
@@ -36,18 +38,29 @@ func CheckUserAuth(phone string, passWord string) Result.Result {
 }
 
 /**
- * @Description: 注册
+ * @Description:
  * @param phone
  * @param passWord
+ * @param avatar
+ * @param nickName
  * @return Result.Result
  */
-func Register(phone string, passWord string) Result.Result {
+func Register(phone string, passWord string, avatar string, nickName string) Result.Result {
 	var u DbModel.User
 	if ok, _ := DbModel.SelectUserByPhone(phone); ok {
 		return Result.Result{Code: Result.UserExit}
 	}
+	_, err := base64.StdEncoding.DecodeString(avatar)
+	if err != nil {
+		return Result.Result{Code: Result.UnKnow}
+	}
+	u.Avatar = Utils.UploadImg(avatar)
+	if len(u.Avatar) == 0 {
+		return Result.Result{Code: Result.UnKnow}
+	}
 	u.Phone = phone
 	u.PassWord = passWord
+	u.NickName = nickName
 	if u.Insert() {
 		return Result.Result{Code: Result.Ok}
 	}

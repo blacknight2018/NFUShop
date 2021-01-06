@@ -5,7 +5,10 @@ import (
 	"encoding/json"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
+	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -94,6 +97,29 @@ func ParseJWT(token string) interface{} {
 	}
 
 	return nil
+}
+
+func UploadImg(base64Data string) string {
+	var ret string
+	type name struct {
+		Data string `json:"data"`
+	}
+	var tmp name
+	tmp.Data = base64Data
+	defaultClient := http.DefaultClient
+	request, err := http.NewRequest("POST", Config.GetImgServer()+"/img", strings.NewReader(Any2JSON(tmp)))
+	if err != nil {
+		return ret
+	}
+	request.Header.Set("Content-Type", "Application/json")
+	resp, err := defaultClient.Do(request)
+	if err != nil {
+		return ret
+	}
+	bytes, _ := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
+	ret = string(bytes)
+	return ret
 }
 
 func ContextGetInt(context *gin.Context, key string) int {

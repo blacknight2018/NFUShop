@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"strconv"
+	"strings"
 )
 
 func login(context *gin.Context) {
@@ -28,9 +29,12 @@ func login(context *gin.Context) {
 }
 
 func register(context *gin.Context) {
+	avatar := context.PostForm("avatar")
+	avatar = strings.ReplaceAll(avatar, " ", "+")
 	phone := context.PostForm("phone")
 	passWord := context.PostForm("pass_word")
-	context.Writer.Write([]byte(User.Register(phone, passWord).Get()))
+	nickName := context.PostForm("nick_name")
+	context.Writer.Write([]byte(User.Register(phone, passWord, avatar, nickName).Get()))
 }
 
 func deleteAddress(context *gin.Context) {
