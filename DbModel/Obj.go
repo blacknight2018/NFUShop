@@ -118,6 +118,9 @@ func DeleteDBObj(in interface{}) bool {
 	case *Banner:
 		err = db.Delete(v).Error
 		break
+	case *Order:
+		err = db.Delete(v).Error
+		break
 	}
 	return err == nil
 }

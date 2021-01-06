@@ -1,5 +1,6 @@
 #db_connect: root:WOaini1314@(main.bybyte.cn:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
-token_time: 120
+token_time: 1200
+order_time: 120
 write_db: root:WOaini1314@(main.bybyte.cn:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
 read_db:
   - root:WOaini1314@(main.bybyte.cn:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true

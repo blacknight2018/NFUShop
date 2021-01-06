@@ -1,8 +1,11 @@
 package DbModel
 
 import (
+	"NFUShop/Config"
 	"NFUShop/Utils"
 	"github.com/jinzhu/gorm"
+	"strconv"
+	"strings"
 )
 
 type Order struct {
@@ -34,6 +37,18 @@ func (o *Order) Insert() bool {
 	return InsertDBObj(o)
 }
 
+func (o *Order) Delete() bool {
+	return DeleteDBObj(o)
+}
+
+func (o *Order) DeleteWithDB(db *gorm.DB) bool {
+	return db.Delete(o).Error == nil
+}
+
+func (o *Order) InsertOrderWithDB(db *gorm.DB) bool {
+	return db.Create(o).Error == nil
+}
+
 func SelectOrderByOrderId(orderId int) (bool, *Order) {
 	var order Order
 	return SelectTableRecordById((&Order{}).TableName(), orderId, nil, &order), &order
@@ -44,6 +59,19 @@ func SelectOrderSet(condition map[string]interface{}, limit *int, offset *int, o
 	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, limit, offset, order), orderSet
 }
 
-func (o *Order) InsertOrderWithDB(db *gorm.DB) bool {
-	return db.Create(o).Error == nil
+func SelectCreateTimeOutOrderSet(status int, timeOutSeconds int) (bool, []Order) {
+	var orderSet []Order
+	db := Config.GetOneDB()
+	if db == nil {
+		return false, nil
+	}
+	defer db.Close()
+
+	rawSql := "select * from `order` where status = XXX and  now()-create_time > YYY"
+	rawSql = strings.ReplaceAll(rawSql, "XXX", strconv.Itoa(status))
+	rawSql = strings.ReplaceAll(rawSql, "YYY", strconv.Itoa(timeOutSeconds))
+	if db.Raw(rawSql).Scan(&orderSet).Error == nil {
+		return true, orderSet
+	}
+	return false, orderSet
 }

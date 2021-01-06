@@ -10,7 +10,7 @@ type SubGoods struct {
 	Id         int         `json:"id" gorm:"column:id;primary_key"`
 	Price      float32     `json:"price" gorm:"column:price"`
 	Stoke      *int        `json:"stoke" gorm:"column:stoke"`
-	Sell       int         `json:"sell" gorm:"column:sell"`
+	Sell       *int        `json:"sell" gorm:"column:sell"`
 	Img        string      `json:"img" gorm:"column:img"`
 	GoodsId    int         `json:"goods_id" gorm:"column:goods_id"`
 	Template   string      `json:"template" gorm:"column:template"`

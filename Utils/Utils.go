@@ -34,13 +34,8 @@ func (t Time) MarshalJSON() ([]byte, error) {
 func (t Time) String() string {
 	return time.Time(t).Format(timeFormat)
 }
-func GetJSONStringArray(jsonString string) []string {
-	var ret []string
-	json.Unmarshal([]byte(jsonString), &ret)
-	return ret
-}
 
-func GetJSONIntArray(jsonString string) []int {
+func JSON2IntArray(jsonString string) []int {
 	var ret []int
 	json.Unmarshal([]byte(jsonString), &ret)
 	return ret

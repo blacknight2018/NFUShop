@@ -15,6 +15,7 @@ type conf struct {
 	WriteDb   string   `yaml:"write_db"`
 	ReadDb    []string `yaml:"read_db"`
 	TokenTime int64    `yaml:"token_time"`
+	OrderTime int      `yaml:"order_time"`
 }
 
 var c conf
@@ -63,4 +64,8 @@ func GetRandomSlaveDB() *gorm.DB {
 
 func GetTokenValidTime() int64 {
 	return c.TokenTime
+}
+
+func GetOrderTime() int {
+	return c.OrderTime
 }

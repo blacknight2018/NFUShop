@@ -168,7 +168,7 @@ func queryOrder(context *gin.Context) {
 	addressId := Utils.StrToInt(context.Query("address_id"))
 	cartArray := context.Query("cart_id")
 	fmt.Println(userId, addressId, cartArray)
-	context.Writer.Write([]byte(Order.QueryOrder(userId, addressId, Utils.GetJSONIntArray(cartArray)).Get()))
+	context.Writer.Write([]byte(Order.QueryOrder(userId, addressId, Utils.JSON2IntArray(cartArray)).Get()))
 }
 
 func submitOrder(context *gin.Context) {
@@ -176,7 +176,12 @@ func submitOrder(context *gin.Context) {
 	addressId := Utils.StrToInt(context.PostForm("address_id"))
 	cartArray := context.PostForm("cart_id")
 	fmt.Println(userId, addressId, cartArray)
-	context.Writer.Write([]byte(Order.CreateOrder(userId, addressId, Utils.GetJSONIntArray(cartArray)).Get()))
+	context.Writer.Write([]byte(Order.CreateOrder(userId, addressId, Utils.JSON2IntArray(cartArray)).Get()))
+}
+
+func payOrder(context *gin.Context) {
+	orderId := Utils.StrToInt(context.PostForm("order_id"))
+	context.Writer.Write([]byte(Order.PayOrder(orderId).Get()))
 }
 func main() {
 	Config.GetConf()
@@ -240,6 +245,8 @@ func main() {
 	order.GET("/query", queryOrder)
 
 	order.POST("/submit", submitOrder)
+
+	order.POST("/pay", payOrder)
 
 	r.Run(":" + strconv.Itoa(Config.GetBindPort()))
 }

@@ -15,7 +15,7 @@ func GetGoodsSell(goodsId int) int {
 	var ret int
 	if ok, data := DbModel.SelectSubGoodsSetByGoodsId(goodsId); ok {
 		for _, v := range data {
-			ret += v.Sell
+			ret += *v.Sell
 		}
 	}
 	return ret

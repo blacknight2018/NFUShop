@@ -6,15 +6,63 @@ import (
 	"NFUShop/Result"
 	"NFUShop/Utils"
 	"encoding/json"
+	"fmt"
+	"time"
 )
 
 const (
-	UnPay      = iota
-	Pay        = iota
-	UnDelivery = iota
-	Delivery   = iota
-	All        = iota
+	UnPay    = iota
+	Pay      = iota
+	Delivery = iota
+	All      = iota
 )
+
+func init() {
+	fmt.Println("init")
+	Config.GetConf()
+	go func() {
+		for {
+			if ok, data := DbModel.SelectCreateTimeOutOrderSet(UnPay, Config.GetOrderTime()); ok {
+				for i := range data {
+					fmt.Println("delete ", data[i].Id, CancelOrder(data[i].Id))
+				}
+			}
+			time.Sleep(time.Second * 10)
+		}
+	}()
+}
+func CancelOrder(orderId int) bool {
+	if ok, data := DbModel.SelectOrderByOrderId(orderId); ok {
+		tx := Config.GetOneDB()
+		trans := tx.Begin()
+		defer tx.Close()
+		subGoodsId := Utils.JSON2IntArray(data.SubGoods)
+		amount := Utils.JSON2IntArray(data.Amount)
+		if len(subGoodsId) != len(amount) {
+			trans.Rollback()
+			return false
+		}
+		for i := range amount {
+			if ok, subGoods := DbModel.SelectSubGoodsBySubGoodsId(subGoodsId[i]); ok {
+				subGoods.Stoke = Utils.Int2IntPtr(amount[i] + *subGoods.Stoke)
+				subGoods.Sell = Utils.Int2IntPtr(*subGoods.Sell - amount[i])
+				if false == subGoods.UpdateWithDB(trans) {
+					trans.Rollback()
+					return false
+				}
+			}
+		}
+		if false == data.DeleteWithDB(trans) {
+			trans.Rollback()
+			return false
+		}
+
+		if trans.Commit().Error == nil {
+			return true
+		}
+	}
+	return false
+}
 
 /**
  * @Description: 创建订单
@@ -53,7 +101,7 @@ func CreateOrder(userId int, addressId int, cartIdSet []int) Result.Result {
 				if ok2, subGoods := DbModel.SelectSubGoodsBySubGoodsId(v); ok2 {
 					tmp := *subGoods.Stoke - amountSet[idx]
 					subGoods.Stoke = &tmp
-					subGoods.Sell += amountSet[idx]
+					subGoods.Sell = Utils.Int2IntPtr(amountSet[idx] + *subGoods.Sell)
 					totalPrice += float32(amountSet[idx]) * subGoods.Price
 					amount = append(amount, amountSet[idx])
 					if tmp < 0 || false == subGoods.UpdateWithDB(trans) {
@@ -191,5 +239,21 @@ func GetOrder(userId int, status int, limit int, offset int) Result.Result {
 		ret.Code = Result.Ok
 	}
 
+	return ret
+}
+
+/**
+ * @Description:
+ * @param orderId
+ * @return Result.Result
+ */
+func PayOrder(orderId int) Result.Result {
+	ret := Result.Result{Code: Result.UnKnow}
+	if ok, data := DbModel.SelectOrderByOrderId(orderId); ok {
+		data.Status = Pay
+		if data.Update() {
+			ret.Code = Result.Ok
+		}
+	}
 	return ret
 }
