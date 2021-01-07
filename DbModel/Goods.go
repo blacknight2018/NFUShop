@@ -73,5 +73,5 @@ func SelectGoodsByGoodsId(goodsId int) (bool, *Goods) {
 
 func SelectGoodsSet(condition map[string]interface{}, limit *int, offset *int) (bool, []Goods) {
 	var goodsSet []Goods
-	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, limit, offset, Utils.EmptyString), goodsSet
+	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, nil, limit, offset, Utils.EmptyString), goodsSet
 }

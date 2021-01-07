@@ -44,11 +44,11 @@ func SelectSubGoodsSetByGoodsId(goodsId int) (bool, []SubGoods) {
 	var subGoodsSet []SubGoods
 	var condition = make(map[string]interface{})
 	condition["goods_id"] = goodsId
-	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, nil, nil, Utils.EmptyString), subGoodsSet
+	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, nil, nil, nil, Utils.EmptyString), subGoodsSet
 }
 func SelectSubGoodsSet(condition map[string]interface{}, limit *int, offset *int) (bool, []SubGoods) {
 	var subGoodsSet []SubGoods
-	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, limit, offset, Utils.EmptyString), subGoodsSet
+	return SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, nil, limit, offset, Utils.EmptyString), subGoodsSet
 }
 
 func SelectSubGoodsSetDescCreateTime(condition map[string]interface{}, limit *int, offset *int) (bool, []SubGoods) {
@@ -108,7 +108,7 @@ func SelectSubGoodsSetDescPriceByGoodsId(goodsId int, limit *int, offset *int) (
 func SelectSubGoodsByTemplateIndex(goodsId int, templateIndex string) (bool, *SubGoods) {
 	var subGoodsSet []SubGoods
 	condition := map[string]interface{}{"goods_id": goodsId, "template": templateIndex}
-	SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, Utils.Int2IntPtr(1), Utils.Int2IntPtr(0), Utils.EmptyString)
+	SelectTableRecordSet((&SubGoods{}).TableName(), &subGoodsSet, condition, nil, Utils.Int2IntPtr(1), Utils.Int2IntPtr(0), Utils.EmptyString)
 	if len(subGoodsSet) == 0 {
 		return false, nil
 	}

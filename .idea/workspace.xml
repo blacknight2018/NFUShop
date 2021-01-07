@@ -19,14 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="添加了订单超时功能,完善了创建订单功能">
+    <list default="true" id="abaa11e0-5c9a-4a8d-9df7-03f6403e343f" name="Default Changelist" comment="添加了注册功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/Config.go" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Config/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/User/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/User/User.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils/Utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nfushop.sql" beforeDir="false" afterPath="$PROJECT_DIR$/nfushop.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Address.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Address.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Banner.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Banner.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Cart.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Cart.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Goods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Obj.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Obj.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/SubGoods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/User.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Order/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Order/Order.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -560,7 +564,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="给user添加了nick_name字段" />
     <MESSAGE value="添加完成选择商品规格显示的功能" />
     <MESSAGE value="修复数据库对象更新的bug,添加加入商品到购物车接口" />
     <MESSAGE value="完成购物车删除功能" />
@@ -585,7 +588,8 @@
     <MESSAGE value="添加了创建订单时判断库存数量" />
     <MESSAGE value="订单添加了商品数量字段" />
     <MESSAGE value="添加了订单超时功能,完善了创建订单功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了订单超时功能,完善了创建订单功能" />
+    <MESSAGE value="添加了注册功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了注册功能" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

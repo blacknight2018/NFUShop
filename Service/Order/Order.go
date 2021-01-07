@@ -213,6 +213,7 @@ func GetOrder(userId int, status int, limit int, offset int) Result.Result {
 	if status != All {
 		condition["status"] = status
 	}
+	condition["user_id"] = userId
 
 	type name struct {
 		DbModel.Order
