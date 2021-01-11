@@ -38,7 +38,7 @@ func SelectGoodsSetLikeTitle(title string, limit *int, offset *int, descCreateTi
 	}
 	defer db.Close()
 	//select goods.* from goods left join sub_goods  on goods.id = sub_goods.goods_id group by goods.id having goods.title like  '%1%' ;
-	rawSql := `select goods.* from goods left join sub_goods  on goods.id = sub_goods.goods_id group by goods.id having goods.title like  '%xxx%'`
+	rawSql := `select goods.* from goods left join sub_goods  on goods.id = sub_goods.goods_id group by goods.id,price having goods.title like  '%xxx%'`
 	//db = db.Where("title like ?", "%"+title+"%")
 	rawSql = strings.ReplaceAll(rawSql, "xxx", title)
 	if limit != nil {

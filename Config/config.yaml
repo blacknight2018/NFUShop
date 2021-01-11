@@ -2,8 +2,8 @@
 token_time: 1200
 order_time: 1200
 img_server: http://m.bybyte.cn:1234
-write_db: root:WOaini1314@(main.bybyte.cn:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
+write_db: root:WOaini1314@(127.0.0.1:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
 read_db:
-  - root:WOaini1314@(main.bybyte.cn:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
+  - root:WOaini1314@(127.0.0.1:3306)/nfushop?charset=utf8mb4&loc=Local&parseTime=true
 secret_key: "Fuck"
 port: 7777
